@@ -1,0 +1,16 @@
+---
+image: alpine:3.12
+
+before_script:
+  - apk --update add py3-setuptools shellcheck
+  - pip3 install bashate yamllint
+
+stages:
+  - check
+
+check:
+  stage: check
+  script:
+    - shellcheck build.sh scripts/*.sh
+    - bashate -i E003 build.sh scripts/*.sh
+    - yamllint .gitlab-ci.yml
