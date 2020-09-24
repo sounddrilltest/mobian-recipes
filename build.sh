@@ -29,7 +29,7 @@ do
   esac
 done
 
-IMG_FILE="mobian-$device-`date +%Y%m%d`.img"
+IMG_FILE="mobian-$device-$(date +%Y%m%d).img"
 
 case "$device" in
   "pinephone" )
