@@ -81,7 +81,8 @@ fi
 ARGS="$ARGS -t architecture:$arch -t device:$device --scratchsize=8G"
 
 if [ ! "$image_only" ]; then
-  $DEBOS_CMD "$ARGS" rootfs.yaml || exit 1
+  # shellcheck disable=SC2086
+  $DEBOS_CMD $ARGS rootfs.yaml || exit 1
 fi
 
 $DEBOS_CMD "$ARGS" -t image:"$IMG_FILE" $image_recipe.yaml
