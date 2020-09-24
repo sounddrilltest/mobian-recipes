@@ -82,12 +82,12 @@ fi
 ARGS="$ARGS -t architecture:$arch -t device:$device --scratchsize=8G"
 
 if [ ! "$image_only" ]; then
-  $DEBOS_CMD $ARGS rootfs.yaml || exit 1
+  $DEBOS_CMD "$ARGS" rootfs.yaml || exit 1
 fi
 
-$DEBOS_CMD $ARGS -t image:$IMG_FILE $image_recipe.yaml
+$DEBOS_CMD "$ARGS" -t image:"$IMG_FILE" $image_recipe.yaml
 
 if [ "$do_compress" ]; then
   echo "Compressing $IMG_FILE..."
-  gzip --keep --force $IMG_FILE
+  gzip --keep --force "$IMG_FILE"
 fi
