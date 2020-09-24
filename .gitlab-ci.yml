@@ -2,7 +2,7 @@
 image: alpine:3.12
 
 before_script:
-  - apk --update add py3-pip py3-setuptools shellcheck
+  - apk --update add bash py3-pip py3-setuptools shellcheck
   - pip3 install bashate yamllint
 
 stages:
