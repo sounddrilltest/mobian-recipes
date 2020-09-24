@@ -25,6 +25,7 @@ do
     p ) password="$OPTARG" ;;
     t ) device="$OPTARG" ;;
     u ) username="$OPTARG" ;;
+    * ) exit 1 ;;
   esac
 done
 
