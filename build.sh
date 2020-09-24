@@ -13,8 +13,7 @@ password=
 use_docker=
 username=
 
-while getopts "dizf:h:m:p:t:u:" opt
-do
+while getopts "dizf:h:m:p:t:u:" opt; do
   case "$opt" in
     d ) use_docker=1 ;;
     i ) image_only=1 ;;
