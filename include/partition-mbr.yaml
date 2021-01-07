@@ -13,7 +13,11 @@ actions:
     partitiontype: msdos
     mountpoints:
       - mountpoint: /
+{{ if ne $rootstart "512MiB" }}
+        partition: installer
+{{ else }}
         partition: rootfs
+{{ end }}
       - mountpoint: /boot
         partition: boot
     partitions:
@@ -23,6 +27,12 @@ actions:
         end: 512MiB
         flags: [ boot ]
       - name: rootfs
+{{ if ne $rootstart "512MiB" }}
+        fs: {{ $filesystem }}
+        start: 512MiB
+        end: {{ $rootstart }}
+      - name: installer
+{{ end }}
         fs: {{ $filesystem }}
         start: {{ $rootstart }}
         end: 100%

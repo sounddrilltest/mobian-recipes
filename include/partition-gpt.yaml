@@ -13,7 +13,11 @@ actions:
     partitiontype: gpt
     mountpoints:
       - mountpoint: /
+{{ if ne $rootstart "768MiB" }}
+        partition: installer
+{{ else }}
         partition: rootfs
+{{ end }}
       - mountpoint: /boot
         partition: boot
       - mountpoint: /boot/efi
@@ -29,6 +33,12 @@ actions:
         start: 256MiB
         end: 768MiB
       - name: rootfs
+{{ if ne $rootstart "768MiB" }}
+        fs: {{ $filesystem }}
+        start: 768MiB
+        end: {{ $rootstart }}
+      - name: installer
+{{ end }}
         fs: {{ $filesystem }}
         start: {{ $rootstart }}
         end: 100%
