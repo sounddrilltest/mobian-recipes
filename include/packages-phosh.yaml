@@ -31,8 +31,7 @@ actions:
       - gnome-weather
       - kgx
       - lollypop
-      - nemo
-      - nemo-fileroller
+      - portfolio-filemanager
       - telegram-desktop
       - telegram-purple
       - webext-ublock-origin
