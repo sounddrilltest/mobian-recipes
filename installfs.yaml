@@ -46,9 +46,9 @@ actions:
     script: scripts/setup-user.sh {{ $username }} {{ $password }}
 
   - action: run
-    description: setup ondevice installer to start on boot
+    description: Set up installer
     chroot: true
-    command: systemctl enable calamaresfb.service
+    script: scripts/setup-installer.sh
 
   - action: pack
     file: installfs-{{ $architecture }}.tar.gz
