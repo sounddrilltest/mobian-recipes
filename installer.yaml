@@ -2,7 +2,7 @@
 {{- $family := or .family "sunxi" }}
 {{- $device := or .device "pinephone" }}
 {{- $partitiontable := or .partitiontable "mbr" }}
-{{- $filesystem := or .filesystem "ext4" }}
+{{- $filesystem := or .filesystem "f2fs" }}
 {{- $environment := or .environment "phosh" -}}
 {{- $image := or .image "mobian-installer-$device-$environment.img" -}}
 
