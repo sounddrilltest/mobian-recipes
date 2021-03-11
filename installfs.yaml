@@ -2,12 +2,13 @@
 {{- $username := or .username "mobian" -}}
 {{- $password := or .password "1234" -}}
 {{- $hostname := or .hostname "mobian" -}}
+{{- $suite := or .suite "bullseye" -}}
 
 architecture: {{ $architecture }}
 
 actions:
   - action: debootstrap
-    suite: bullseye
+    suite: {{ $suite }}
     components:
       - main
     mirror: http://deb.debian.org/debian
