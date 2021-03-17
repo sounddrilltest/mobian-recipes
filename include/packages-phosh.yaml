@@ -9,14 +9,11 @@ actions:
     description: Install mobian-specific packages
     packages:
       - mobian-phosh
-      - phosh-games
       # Additional software we don't want metapackages to depend on
       - eog
       - epiphany-browser
       - evince
-      - file-roller
       - firefox-esr
-      - fractal
       - geary
       - gedit
       - gnome-calculator
@@ -31,10 +28,7 @@ actions:
       - kgx
       - lollypop
       - portfolio-filemanager
-      - telegram-desktop
-      - telegram-purple
       - webext-ublock-origin
-      - youtube-dl
 {{ if $ssh }}
       - openssh-server
 {{ end }}
