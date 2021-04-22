@@ -133,7 +133,7 @@ ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t environment:$environment -t image:$image_file \
             -t suite:$suite --scratchsize=8G"
 
-if [ ! "$image_only" ]; then
+if [ ! "$image_only" -o ! -f "rootfs-$arch-$environment.tar.gz" ]; then
   $DEBOS_CMD $ARGS rootfs.yaml || exit 1
   if [ "$installer" ]; then
     $DEBOS_CMD $ARGS installfs.yaml || exit 1
