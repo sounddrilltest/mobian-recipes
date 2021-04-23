@@ -9,10 +9,12 @@ image="image"
 partitiontable="mbr"
 filesystem="f2fs"
 environment="phosh"
-arch=
+nonfree="false"
+arch="arm64"
+family="sunxi"
 do_compress=
-family=
 image_only=
+imagesize="3.8GB"
 installer=
 memory=
 password=
@@ -48,35 +50,31 @@ done
 
 case "$device" in
   "pinephone" )
-    arch="arm64"
-    family="sunxi"
     ;;
   "pinetab" )
-    arch="arm64"
-    family="sunxi"
     ;;
   "librem5" )
-    arch="arm64"
     family="librem5"
     ;;
   "surfacepro3" )
     arch="amd64"
     family="amd64"
     partitiontable="gpt"
-    ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
+    nonfree="true"
+    imagesize="5GB"
     ;;
   "amd64" )
     arch="amd64"
     family="amd64"
     device="efi"
     partitiontable="gpt"
-    ARGS="$ARGS -t imagesize:20GB"
+    imagesize="20GB"
     ;;
   "amd64-legacy" )
     arch="amd64"
     family="amd64"
     device="pc"
-    ARGS="$ARGS -t imagesize:20GB"
+    imagesize="20GB"
     ;;
   * )
     echo "Unsupported device '$device'"
@@ -84,10 +82,11 @@ case "$device" in
     ;;
 esac
 
-image_file="mobian-$device-$environment-`date +%Y%m%d`.img"
 if [ "$installer" ]; then
   image="installer"
   image_file="mobian-installer-$device-$environment-`date +%Y%m%d`.img"
+else
+  image_file="mobian-$device-$environment-`date +%Y%m%d`.img"
 fi
 
 if [ "$use_docker" ]; then
@@ -128,8 +127,8 @@ if [ "$memory" ]; then
   ARGS="$ARGS --memory $memory"
 fi
 
-ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
-            -t partitiontable:$partitiontable -t filesystem:$filesystem \
+ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device -t nonfree:$nonfree \
+            -t partitiontable:$partitiontable -t filesystem:$filesystem -t imagesize:$imagesize\
             -t environment:$environment -t image:$image_file \
             -t suite:$suite --scratchsize=8G"
 
