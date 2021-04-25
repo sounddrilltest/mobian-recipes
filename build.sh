@@ -25,7 +25,7 @@ ssh=
 suite="bullseye"
 sign=
 
-while getopts "dDizobsS:e:f:g:h:m:p:t:u:F:" opt
+while getopts "dDizobsc:e:f:g:h:m:p:t:u:F:S:" opt
 do
   case "$opt" in
     d ) use_docker=1 ;;
@@ -36,6 +36,7 @@ do
     b ) no_blockmap=1 ;;
     s ) ssh=1 ;;
     o ) installer=1 ;;
+    c ) cpus="$OPTARG" ;;
     f ) ftp_proxy="$OPTARG" ;;
     h ) http_proxy="$OPTARG" ;;
     g ) sign="$OPTARG" ;;
@@ -124,7 +125,11 @@ if [ "$ftp_proxy" ]; then
 fi
 
 if [ "$memory" ]; then
-  ARGS="$ARGS --memory $memory"
+  ARGS="$ARGS --memory=$memory"
+fi
+
+if [ "$cpus" ]; then
+  ARGS="$ARGS --cpus=$cpus"
 fi
 
 ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device -t nonfree:$nonfree \
