@@ -13,6 +13,11 @@ actions:
   - action: unpack
     file: rootfs-{{ $device }}-{{ $environment }}.tar.gz
 
+  - action: run
+    description: Lighten initramfs
+    chroot: true
+    command: apt-get -y remove osk-sdl cryptsetup && apt-get -y autoremove
+
   - action: recipe
     recipe: include/partition-{{ $partitiontable }}.yaml
     variables:
