@@ -152,7 +152,7 @@ fi
 $DEBOS_CMD $ARGS "$image.yaml"
 
 if [ ! "$no_blockmap" ]; then
-  bmaptool create "$image_file.img" > "$image_file.bmap"
+  bmaptool create "$image_file.img" > "$image_file.img.bmap"
 fi
 
 if [ "$do_compress" ]; then
@@ -162,10 +162,10 @@ fi
 
 if [ -n "$sign" ]; then
     if [ "$do_compress" ]; then
-        sha256sum ${image_file}.gz > ${image_file}.sha256sums
+        sha256sum ${image_file}.img.gz > ${image_file}.sha256sums
     else
-        sha256sum ${image_file} > ${image_file}.sha256sums
+        sha256sum ${image_file}.img > ${image_file}.sha256sums
     fi
-    sha256sum ${image_file}.bmap >> ${image_file}.sha256sums
+    sha256sum ${image_file}.img.bmap >> ${image_file}.sha256sums
     gpg -u ${sign} --clearsign ${image_file}.sha256sums
 fi
