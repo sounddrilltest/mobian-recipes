@@ -7,5 +7,5 @@ actions:
   - action: raw
     description: Install bootloader
     origin: filesystem
-    source: boot/librem5-boot.img
+    source: librem5-boot.img
     offset: 2048
