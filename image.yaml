@@ -4,7 +4,7 @@
 {{- $partitiontable := or .partitiontable "mbr" }}
 {{- $filesystem := or .filesystem "f2fs" }}
 {{- $environment := or .environment "phosh" -}}
-{{- $image := or .image "mobian-$device-$environment.img" -}}
+{{- $image := or .image "mobian-$device-$environment" -}}
 {{- $imagesize := or .imagesize "3.8GB" }}
 
 architecture: {{ $architecture }}

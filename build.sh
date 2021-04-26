@@ -84,10 +84,10 @@ case "$device" in
     ;;
 esac
 
-image_file="mobian-$device-$environment-`date +%Y%m%d`.img"
+image_file="mobian-$device-$environment-`date +%Y%m%d`"
 if [ "$installer" ]; then
   image="installer"
-  image_file="mobian-installer-$device-$environment-`date +%Y%m%d`.img"
+  image_file="mobian-installer-$device-$environment-`date +%Y%m%d`"
 fi
 
 if [ "$use_docker" ]; then
@@ -152,12 +152,12 @@ fi
 $DEBOS_CMD $ARGS "$image.yaml"
 
 if [ ! "$no_blockmap" ]; then
-  bmaptool create "$image_file" > "$image_file.bmap"
+  bmaptool create "$image_file.img" > "$image_file.bmap"
 fi
 
 if [ "$do_compress" ]; then
   echo "Compressing $image_file..."
-  gzip --keep --force $image_file
+  gzip --keep --force $image_file.img
 fi
 
 if [ -n "$sign" ]; then
