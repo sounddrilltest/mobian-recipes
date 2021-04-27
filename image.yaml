@@ -37,6 +37,7 @@ actions:
     recipe: devices/{{ $family }}/bootloader.yaml
     variables:
       device: {{ $device }}
+      image: {{ $image }}
 
   - action: run
     description: Cleanup final image
