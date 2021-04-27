@@ -59,6 +59,11 @@ case "$device" in
     arch="arm64"
     family="librem5"
     ;;
+  "oneplus6"|"oneplus6t"|"pocof1" )
+    arch="arm64"
+    family="sdm845"
+    ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
+    ;;
   "surfacepro3" )
     arch="amd64"
     family="amd64"
@@ -151,7 +156,7 @@ fi
 
 $DEBOS_CMD $ARGS "$image.yaml"
 
-if [ ! "$no_blockmap" ]; then
+if [ ! "$no_blockmap" -a -f "$image_file.img" ]; then
   bmaptool create "$image_file.img" > "$image_file.img.bmap"
 fi
 
