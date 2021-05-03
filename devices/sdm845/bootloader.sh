@@ -8,6 +8,9 @@ ROOTPART=$(grep f2fs /etc/fstab | awk '{ print $1; }')
 BOOTDEV=$(lsblk -o PATH,MOUNTPOINT -n | grep /boot | awk '{ print $1; }')
 KERNEL_VERSION=$(linux-version list)
 
+# Update the initramfs to make sure it's up-to-date
+update-initramfs -u -k all
+
 case "${DEVICE}" in
     "oneplus6t")
         DTB_DEVICE="fajita"
