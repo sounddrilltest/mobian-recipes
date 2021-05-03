@@ -161,16 +161,21 @@ if [ ! "$no_blockmap" -a -f "$image_file.img" ]; then
 fi
 
 if [ "$do_compress" ]; then
-  echo "Compressing $image_file..."
-  gzip --keep --force $image_file.img
+  echo "Compressing ${image_file}..."
+  [ -f ${image_file}.img ] && gzip --keep --force ${image_file}.img
+  [ -f ${image_file}.root.img ] && tar czf ${image_file}.tar.gz ${image_file}.boot.img ${image_file}.root.img
 fi
 
 if [ -n "$sign" ]; then
+    truncate -s0 ${image_file}.sha256sums
     if [ "$do_compress" ]; then
-        sha256sum ${image_file}.img.gz > ${image_file}.sha256sums
+        extensions="img.gz tar.gz img.bmap"
     else
-        sha256sum ${image_file}.img > ${image_file}.sha256sums
+        extensions="img boot.img root.img img.bmap"
     fi
-    sha256sum ${image_file}.img.bmap >> ${image_file}.sha256sums
+
+    for ext in ${extensions}; do
+        [ -f ${image_file}.${ext} ] && sha256sum ${image_file}.${ext} >> ${image_file}.sha256sums
+    done
     gpg -u ${sign} --clearsign ${image_file}.sha256sums
 fi
