@@ -63,4 +63,8 @@ actions:
     script: scripts/setup-system.sh {{ $hostname }}
 
   - action: pack
+{{ if eq $nonfree "true" }}
+    file: rootfs-{{ $architecture }}-{{ $environment }}-nonfree.tar.gz
+{{ else }}
     file: rootfs-{{ $architecture }}-{{ $environment }}.tar.gz
+{{ end }}
