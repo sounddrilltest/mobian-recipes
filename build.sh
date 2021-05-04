@@ -95,6 +95,11 @@ if [ "$installer" ]; then
   image_file="mobian-installer-$device-$environment-`date +%Y%m%d`"
 fi
 
+rootfs_file="rootfs-$arch-$environment.tar.gz"
+if echo $ARGS | grep -q "nonfree:true"; then
+  rootfs_file="rootfs-$arch-$environment-nonfree.tar.gz"
+fi
+
 if [ "$use_docker" ]; then
   DEBOS_CMD=docker
   ARGS="run --rm --interactive --tty --device /dev/kvm --workdir /recipes \
@@ -138,7 +143,7 @@ ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t environment:$environment -t image:$image_file \
             -t suite:$suite --scratchsize=8G"
 
-if [ ! "$image_only" -o ! -f "rootfs-$arch-$environment.tar.gz" ]; then
+if [ ! "$image_only" -o ! -f "$rootfs_file" ]; then
   $DEBOS_CMD $ARGS rootfs.yaml || exit 1
   if [ "$installer" ]; then
     $DEBOS_CMD $ARGS installfs.yaml || exit 1
