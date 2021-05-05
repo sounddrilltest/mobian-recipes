@@ -12,3 +12,4 @@ actions:
       - mkbootimg
       - mobian-phosh-phone
       - firefox-esr-mobile-config
+      - openssh-server
