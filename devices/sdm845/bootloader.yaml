@@ -8,4 +8,4 @@ actions:
   - action: run
     description: Extract rootfs partition
     postprocess: true
-    script: extract-rootfs.sh {{ $image }}
+    script: extract-rootfs.sh {{ $device }} {{ $image }}

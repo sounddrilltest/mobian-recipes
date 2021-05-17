@@ -59,7 +59,7 @@ case "$device" in
     arch="arm64"
     family="librem5"
     ;;
-  "oneplus6"|"oneplus6t"|"pocof1" )
+  "oneplus6"|"pocof1" )
     arch="arm64"
     family="sdm845"
     ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
@@ -168,7 +168,7 @@ fi
 if [ "$do_compress" ]; then
   echo "Compressing ${image_file}..."
   [ -f ${image_file}.img ] && gzip --keep --force ${image_file}.img
-  [ -f ${image_file}.root.img ] && tar czf ${image_file}.tar.gz ${image_file}.boot.img ${image_file}.root.img
+  [ -f ${image_file}.root.img ] && tar czf ${image_file}.tar.gz ${image_file}.boot-*.img ${image_file}.root.img
 fi
 
 if [ -n "$sign" ]; then
@@ -176,11 +176,15 @@ if [ -n "$sign" ]; then
     if [ "$do_compress" ]; then
         extensions="img.gz tar.gz img.bmap"
     else
-        extensions="img boot.img root.img img.bmap"
+        extensions="img boot-*.img root.img img.bmap"
     fi
 
     for ext in ${extensions}; do
-        [ -f ${image_file}.${ext} ] && sha256sum ${image_file}.${ext} >> ${image_file}.sha256sums
+        for file in $(ls ${image_file}.${ext} 2>/dev/null); do
+            sha256sum ${file} >> ${image_file}.sha256sums
+        done
     done
+
+    [ -f ${image_file}.sha256sums.asc ] && rm ${image_file}.sha256sums.asc
     gpg -u ${sign} --clearsign ${image_file}.sha256sums
 fi

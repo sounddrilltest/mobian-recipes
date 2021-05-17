@@ -1,8 +1,22 @@
 #!/bin/sh
 
-IMAGE=$1
+DEVICE=$1
+IMAGE=$2
 
 [ "$IMAGE" ] || exit 1
+
+case "${DEVICE}" in
+    "oneplus6")
+        VARIANTS="enchilada fajita"
+        ;;
+    "pocof1")
+        VARIANTS="beryllium-tianma beryllium-ebbg"
+        ;;
+    *)
+        echo "ERROR: unsupported device ${DEVICE}"
+        exit 1
+        ;;
+esac
 
 # On an Android device, we can't simply flash a full bootable image: we can only
 # flash one partition at a time using fastboot.
@@ -18,13 +32,14 @@ img2simg $IMAGE.root.img $IMAGE.root.simg && mv $IMAGE.root.simg $IMAGE.root.img
 
 # Extract bootimg (already an Android-specific format, no need to convert it)
 BOOT_OFFSET=`/sbin/fdisk -lu $IMAGE.img | grep "\.img1" | awk '{ print $3; }'` &&
-BOOT_SIZE=`/sbin/fdisk -lu $IMAGE.img | grep "\.img1" | awk '{ print $5; }'` &&
-echo "Extracting boot @ $BOOT_OFFSET"
-dd if=$IMAGE.img of=$IMAGE.boot.img bs=512 skip=$BOOT_OFFSET count=$BOOT_SIZE
 
-# The boot partition on oneplus6 & pocof1 is 67.1M, trimming to 64M will ensure
-# our bootimg fits
-truncate -s 64M $IMAGE.boot.img
+for variant in ${VARIANTS}; do
+    echo "Extracting boot @ $BOOT_OFFSET for variant ${variant}"
+    # Extract only 64M (131072 x 512b) of the bootimg as larger ones wouldn't fit
+    dd if=$IMAGE.img of=$IMAGE.boot-${variant}.img bs=512 skip=$BOOT_OFFSET count=131072
+    # Next bootimg is right after the current one
+    BOOT_OFFSET=$(expr ${BOOT_OFFSET} + 131072)
+done
 
 # Ditch the old image, we don't need it anymore
 rm $IMAGE.img
