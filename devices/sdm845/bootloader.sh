@@ -17,7 +17,7 @@ case "${DEVICE}" in
         ;;
     "pocof1")
         DTB_VENDOR="xiaomi"
-        DTB_DEVICE="beryllium"
+        DTB_DEVICE="beryllium-tianma"
         ;;
 esac
 
