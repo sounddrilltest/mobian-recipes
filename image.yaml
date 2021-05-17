@@ -38,8 +38,3 @@ actions:
     variables:
       device: {{ $device }}
       image: {{ $image }}
-
-  - action: run
-    description: Cleanup final image
-    chroot: true
-    script: scripts/final-cleanup.sh
