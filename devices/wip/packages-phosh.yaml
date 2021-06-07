@@ -1,0 +1,30 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $device := or .device "wip-arm64" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: overlay
+    source: rootfs
+
+  - action: overlay
+    source: packages
+    destination: srv
+
+  - action: overlay
+    source: firmware
+    destination: lib/firmware
+
+  - action: apt
+    recommends: false
+    description: Install device-specific packages
+    packages:
+      - mkbootimg
+      - mobian-phosh-phone
+      - mobile-tweaks-common
+      - openssh-server
+
+  - action: run
+    chroot: true
+    description: Install local packages
+    command: apt-get -y install --no-install-recommends /srv/*.deb && rm /srv/*.deb

@@ -85,6 +85,19 @@ case "$device" in
     device="pc"
     ARGS="$ARGS -t imagesize:20GB"
     ;;
+  "wip-"* )
+    arch=$(echo "$device" | sed -e 's/wip-//' -e 's/:.*//')
+    device=$(echo "$device" | sed -e 's/.*://')
+    family="wip"
+    ARGS="$ARGS -t imagesize:6GB"
+    if [ "$arch" != "amd64" ] && [ "$arch" != "arm64" ] && [ "$arch" != "armhf" ]; then
+      echo "ERROR: Unsupported architecture $arch"
+      exit 1
+    fi
+    # We expect lots of iterations rebuilding the device-specific rootfs, so
+    # remove it now so we don't keep re-using the same one with the `-i` option
+    rm -f "rootfs-$device-$environment.tar.gz"
+    ;;
   * )
     echo "Unsupported device '$device'"
     exit 1

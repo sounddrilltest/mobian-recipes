@@ -1,0 +1,10 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $device := or .device "wip-arm64" }}
+{{- $image := or .image "mobian-$device" -}}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: run
+    chroot: false
+    script: scripts/extract-bootimg.sh {{ $device }} {{ $image }}
