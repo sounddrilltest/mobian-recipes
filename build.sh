@@ -2,7 +2,9 @@
 
 export PATH=/sbin:/usr/sbin:$PATH
 DEBOS_CMD=debos
-ARGS=
+if [ -z ${ARGS+x} ]; then
+    ARGS=""
+fi
 
 device="pinephone"
 image="image"
