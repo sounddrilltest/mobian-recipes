@@ -11,6 +11,7 @@ image="image"
 partitiontable="mbr"
 filesystem="f2fs"
 environment="phosh"
+hostname=
 arch=
 do_compress=
 family=
@@ -26,12 +27,13 @@ suite="bullseye"
 sign=
 miniramfs=
 
-while getopts "dDizobsrS:e:f:g:h:m:p:t:u:F:" opt
+while getopts "dDizobsrS:e:H:f:g:h:m:p:t:u:F:" opt
 do
   case "$opt" in
     d ) use_docker=1 ;;
     D ) debug=1 ;;
     e ) environment="$OPTARG" ;;
+    H ) hostname="$OPTARG" ;;
     i ) image_only=1 ;;
     z ) do_compress=1 ;;
     b ) no_blockmap=1 ;;
@@ -128,6 +130,10 @@ fi
 
 if [ "$environment" ]; then
   ARGS="$ARGS -t environment:$environment"
+fi
+
+if [ "$hostname" ]; then
+  ARGS="$ARGS -t hostname:$hostname"
 fi
 
 if [ "$http_proxy" ]; then
