@@ -1,16 +1,17 @@
 #!/bin/sh
 
-SUITE=$1
-CONTRIB=$2
-NONFREE=$3
+DEBIAN_SUITE=$1
+SUITE=$2
+CONTRIB=$3
+NONFREE=$4
 
 COMPONENTS="main"
 [ "$CONTRIB" = "true" ] && COMPONENTS="$COMPONENTS contrib"
 [ "$NONFREE" = "true" ] && COMPONENTS="$COMPONENTS non-free"
 
 # Add debian-security for bullseye; note that only the main component is supported
-if [ "$SUITE" = "bullseye" ]; then
-    echo "deb http://security.debian.org/ $SUITE-security $COMPONENTS" >> /etc/apt/sources.list
+if [ "$DEBIAN_SUITE" = "bullseye" ]; then
+    echo "deb http://security.debian.org/ $DEBIAN_SUITE-security $COMPONENTS" >> /etc/apt/sources.list
 fi
 
 # Set the proper suite in our sources.list

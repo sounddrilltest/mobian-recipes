@@ -23,12 +23,13 @@ use_docker=
 username=
 no_blockmap=
 ssh=
+debian_suite="bullseye"
 suite="bullseye"
 contrib=
 sign=
 miniramfs=
 
-while getopts "dDizobsCrS:e:H:f:g:h:m:p:t:u:F:" opt
+while getopts "dDizobsCrx:S:e:H:f:g:h:m:p:t:u:F:" opt
 do
   case "$opt" in
     d ) use_docker=1 ;;
@@ -48,6 +49,7 @@ do
     t ) device="$OPTARG" ;;
     u ) username="$OPTARG" ;;
     F ) filesystem="$OPTARG" ;;
+    x ) debian_suite="$OPTARG" ;;
     S ) suite="$OPTARG" ;;
     C ) contrib=1 ;;
     r ) miniramfs=1 ;;
@@ -161,7 +163,7 @@ fi
 ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t partitiontable:$partitiontable -t filesystem:$filesystem \
             -t environment:$environment -t image:$image_file \
-            -t suite:$suite --scratchsize=8G"
+            -t debian_suite:$debian_suite -t suite:$suite --scratchsize=8G"
 
 if [ ! "$image_only" -o ! -f "$rootfs_file" ]; then
   $DEBOS_CMD $ARGS rootfs.yaml || exit 1
