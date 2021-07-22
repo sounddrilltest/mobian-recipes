@@ -116,49 +116,18 @@ if [ "$use_docker" ]; then
             --mount type=bind,source=$(pwd),destination=/recipes \
             --security-opt label=disable godebos/debos $ARGS"
 fi
-if [ "$debug" ]; then
-  ARGS="$ARGS --debug-shell"
-fi
 
-if [ "$username" ]; then
-  ARGS="$ARGS -t username:$username"
-fi
-
-if [ "$password" ]; then
-  ARGS="$ARGS -t password:$password"
-fi
-
-if [ "$ssh" ]; then
-  ARGS="$ARGS -t ssh:$ssh"
-fi
-
-if [ "$environment" ]; then
-  ARGS="$ARGS -t environment:$environment"
-fi
-
-if [ "$hostname" ]; then
-  ARGS="$ARGS -t hostname:$hostname"
-fi
-
-if [ "$http_proxy" ]; then
-  ARGS="$ARGS -e http_proxy:$http_proxy"
-fi
-
-if [ "$ftp_proxy" ]; then
-  ARGS="$ARGS -e ftp_proxy:$ftp_proxy"
-fi
-
-if [ "$memory" ]; then
-  ARGS="$ARGS --memory $memory"
-fi
-
-if [ "$miniramfs" ]; then
-  ARGS="$ARGS -t miniramfs:true"
-fi
-
-if [ "$contrib" ]; then
-  ARGS="$ARGS -t contrib:true"
-fi
+[ "$debug" ] && ARGS="$ARGS --debug-shell"
+[ "$username" ] && ARGS="$ARGS -t username:$username"
+[ "$password" ] && ARGS="$ARGS -t password:$password"
+[ "$ssh" ] && ARGS="$ARGS -t ssh:$ssh"
+[ "$environment" ] && ARGS="$ARGS -t environment:$environment"
+[ "$hostname" ] && ARGS="$ARGS -t hostname:$hostname"
+[ "$http_proxy" ] && ARGS="$ARGS -e http_proxy:$http_proxy"
+[ "$ftp_proxy" ] && ARGS="$ARGS -e ftp_proxy:$ftp_proxy"
+[ "$memory" ] && ARGS="$ARGS --memory $memory"
+[ "$miniramfs" ] && ARGS="$ARGS -t miniramfs:true"
+[ "$contrib" ] && ARGS="$ARGS -t contrib:true"
 
 ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t partitiontable:$partitiontable -t filesystem:$filesystem \
