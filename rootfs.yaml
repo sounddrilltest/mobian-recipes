@@ -28,7 +28,7 @@ actions:
   - action: run
     description: Setup Mobian repository
     chroot: true
-    script: scripts/setup-repo.sh {{ $suite }} {{ $nonfree }}
+    script: scripts/setup-apt.sh {{ $suite }} {{ $nonfree }}
 
   - action: recipe
     recipe: include/packages-{{ $environment }}.yaml
