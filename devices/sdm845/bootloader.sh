@@ -34,6 +34,6 @@ for variant in ${DTB_VARIANTS}; do
     # Create the bootimg as it's the only format recognized by the Android bootloader
     mkbootimg --kernel /tmp/kernel-dtb --ramdisk /boot/initrd.img-${KERNEL_VERSION} \
         --kernel_offset 0x8000 --ramdisk_offset 0x1000000 --tags_offset 0x100 \
-        --pagesize 4096 --cmdline "mobian.root=${ROOTPART} mobian.variant=${variant} init=/sbin/init rw quiet splash" \
+        --pagesize 4096 --cmdline "mobian.root=${ROOTPART} mobian.vendor=${DTB_VENDOR} mobian.variant=${variant} init=/sbin/init rw quiet splash" \
         --base 0x0 --second_offset 0x0 -o /bootimg-${variant}
 done
