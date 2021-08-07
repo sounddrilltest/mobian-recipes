@@ -74,6 +74,7 @@ case "$device" in
   "oneplus6"|"pocof1" )
     arch="arm64"
     family="sdm845"
+    suite="unstable"
     ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
     ;;
   "surfacepro3" )
