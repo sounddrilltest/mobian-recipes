@@ -13,5 +13,4 @@ actions:
       - libqmi-utils
       - mkbootimg
       - mobian-phosh-phone
-      - modemmanager-git
       - openssh-server
