@@ -14,6 +14,13 @@ actions:
     file: rootfs-{{ $architecture }}-{{ $environment }}.tar.gz
 {{ end }}
 
+{{ if eq $nonfree "true" }}
+  - action: run
+    description: Enable non-free Debian repo
+    chroot: true
+    command: sed -i 's/main$/main non-free/g' /etc/apt/sources.list
+{{ end }}
+
   - action: recipe
     recipe: devices/{{ $family }}/packages-{{ $environment }}.yaml
     variables:
