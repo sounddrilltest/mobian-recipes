@@ -3,16 +3,13 @@
 {{- $nonfree := or .nonfree "false" -}}
 {{- $device := or .device "pinephone" }}
 {{- $environment := or .environment "phosh" -}}
+{{- $rootfs := or .rootfs "rootfs.tar.gz" }}
 
 architecture: {{ $architecture }}
 
 actions:
   - action: unpack
-{{ if eq $nonfree "true" }}
-    file: rootfs-{{ $architecture }}-{{ $environment }}-nonfree.tar.gz
-{{ else }}
-    file: rootfs-{{ $architecture }}-{{ $environment }}.tar.gz
-{{ end }}
+    file: {{ $rootfs }}
 
 {{ if eq $nonfree "true" }}
   - action: run

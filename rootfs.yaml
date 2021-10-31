@@ -9,6 +9,7 @@
 {{- $zram:= or .zram "false" -}}
 {{- $debian_suite := or .debian_suite "bookworm" -}}
 {{- $suite := or .suite $debian_suite -}}
+{{- $rootfs := or .rootfs "rootfs.tar.gz" }}
 
 architecture: {{ $architecture }}
 
@@ -76,8 +77,4 @@ actions:
     script: scripts/setup-system.sh {{ $hostname }}
 
   - action: pack
-{{ if eq $nonfree "true" }}
-    file: rootfs-{{ $architecture }}-{{ $environment }}-nonfree.tar.gz
-{{ else }}
-    file: rootfs-{{ $architecture }}-{{ $environment }}.tar.gz
-{{ end }}
+    file: {{ $rootfs }}

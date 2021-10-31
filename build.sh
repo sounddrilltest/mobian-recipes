@@ -135,7 +135,7 @@ fi
 
 ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t partitiontable:$partitiontable -t filesystem:$filesystem \
-            -t environment:$environment -t image:$image_file \
+            -t environment:$environment -t image:$image_file -t rootfs:$rootfs_file \
             -t debian_suite:$debian_suite -t suite:$suite --scratchsize=8G"
 
 if [ ! "$image_only" -o ! -f "$rootfs_file" ]; then
