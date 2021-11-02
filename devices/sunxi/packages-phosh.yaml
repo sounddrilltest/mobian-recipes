@@ -13,5 +13,6 @@ actions:
       - mobian-phosh-phone
       - firefox-esr-mobile-config
 {{ end }}
+      - imagemagick
       - megapixels
       - powersupply
