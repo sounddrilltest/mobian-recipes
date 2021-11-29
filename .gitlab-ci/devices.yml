@@ -6,6 +6,16 @@
     MOBIAN_DEVICE_NAME: "pinephone"
     DEVICEFS_UPLOAD: "true"
 
+.device-pinephonepro:
+  extends:
+    - .arch-arm64
+  variables:
+    MOBIAN_DEVICE_FAMILY: "rockchip"
+    MOBIAN_DEVICE_NAME: "pinephonepro"
+    MOBIAN_BOOT_PARTITION_START: "16MiB"
+    MOBIAN_INCLUDE_NONFREE: "true"
+    MOBIAN_SUITE: "unstable"
+
 .device-pinetab:
   extends:
     - .arch-arm64

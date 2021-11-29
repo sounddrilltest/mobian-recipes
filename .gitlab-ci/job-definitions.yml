@@ -49,7 +49,7 @@ cleanup-artifacts-dir:
 .rootfs-generic:
   stage: rootfs
   script:
-    - MOBIAN_ARTIFACTS="rootfs-${ARCH}-${MOBIAN_GRAPHICAL_SHELL}.tar.gz"
+    - MOBIAN_ARTIFACTS="rootfs-${ARCH}-${MOBIAN_GRAPHICAL_SHELL}-${MOBIAN_SUITE}.tar.gz"
     - debos --scratchsize=8G
       -t architecture:${ARCH}
       -t environment:${MOBIAN_GRAPHICAL_SHELL}
@@ -72,7 +72,7 @@ cleanup-artifacts-dir:
 .devicefs:
   stage: devicefs
   script:
-    - MOBIAN_ARTIFACTS="rootfs-${ARCH}-${MOBIAN_GRAPHICAL_SHELL}.tar.gz"
+    - MOBIAN_ARTIFACTS="rootfs-${ARCH}-${MOBIAN_GRAPHICAL_SHELL}-${MOBIAN_SUITE}.tar.gz"
     - *restore-artifacts
     - debos --scratchsize=8G
       -t architecture:${ARCH}
