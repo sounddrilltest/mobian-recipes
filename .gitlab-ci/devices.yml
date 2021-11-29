@@ -46,6 +46,7 @@
     MOBIAN_DEVICE_NAME: "surfacepro3"
     MOBIAN_INCLUDE_NONFREE: "true"
     MOBIAN_PARTITION_TABLE: "gpt"
+    MOBIAN_BOOT_PARTITION_START: "0%"
 
 .device-amd64-pc:
   extends:
@@ -63,3 +64,4 @@
     MOBIAN_DEVICE_NAME: "efi"
     MOBIAN_IMAGE_SIZE: "20GB"
     MOBIAN_PARTITION_TABLE: "gpt"
+    MOBIAN_BOOT_PARTITION_START: "0%"
