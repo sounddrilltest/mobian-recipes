@@ -3,7 +3,7 @@
 A set of [debos](https://github.com/go-debos/debos) recipes for building a
 debian-based image for mobile phones, initially targetting Pine64's PinePhone.
 
-Prebuilt images are available [here](http://images.mobian-project.org/).
+Prebuilt images are available [here](http://images.mobian.org/).
 
 The default user is `mobian` with password `1234`.
 

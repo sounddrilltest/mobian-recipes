@@ -1,20 +1,20 @@
 prepare-artifacts-dir:
   stage: prepare
   script:
-    - ssh builder@mobian-project.org mkdir -p ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
+    - ssh builder@mobian.org mkdir -p ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
 
 cleanup-artifacts-dir:
   stage: cleanup
   script:
-    - ssh builder@mobian-project.org rm -rf ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
+    - ssh builder@mobian.org rm -rf ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
   when: always
 
 .save-artifacts: &save-artifacts |
-  scp ${MOBIAN_ARTIFACTS} builder@mobian-project.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
+  scp ${MOBIAN_ARTIFACTS} builder@mobian.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
 
 .restore-artifacts: &restore-artifacts |
   for artifact in ${MOBIAN_ARTIFACTS}; do
-    scp builder@mobian-project.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}/${artifact} .
+    scp builder@mobian.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}/${artifact} .
   done
 
 .upload-images: &upload-images |
@@ -23,9 +23,9 @@ cleanup-artifacts-dir:
   else
     IMAGES_DIR=${IMAGES_CI_ROOT}/$(date --date="${CI_PIPELINE_CREATED_AT}" +%Y%m%d.%H%M)
   fi
-  ssh builder@mobian-project.org mkdir -p ${IMAGES_DIR}
+  ssh builder@mobian.org mkdir -p ${IMAGES_DIR}
   for image in ${IMAGE_NAME}*; do
-    scp ${image} builder@mobian-project.org:${IMAGES_DIR}/
+    scp ${image} builder@mobian.org:${IMAGES_DIR}/
   done
 
 .finish-images: &finish-images |
