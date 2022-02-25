@@ -66,7 +66,7 @@ case "$device" in
   "pinephonepro" )
     arch="arm64"
     family="rockchip"
-    suite="unstable"
+    suite="staging"
     ARGS="$ARGS -t nonfree:true -t bootstart:16MiB"
     ;;
   "pinetab" )
@@ -80,7 +80,7 @@ case "$device" in
   "oneplus6"|"pocof1" )
     arch="arm64"
     family="sdm845"
-    suite="unstable"
+    suite="staging"
     ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
     ;;
   "surfacepro3" )
