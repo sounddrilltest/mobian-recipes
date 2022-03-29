@@ -6,7 +6,6 @@ architecture: {{ $architecture }}
 actions:
   - action: apt
     recommends: false
-    description: Install device-specific packages for Phosh
+    description: Install device-specific base packages
     packages:
-      - firefox-esr-mobile-config
-      - mobian-phosh-phone
+      - {{ $device }}-support
