@@ -16,7 +16,7 @@ arch=
 do_compress=
 family=
 image_only=
-installer=0
+installer=
 zram=
 memory=
 password=
@@ -69,7 +69,7 @@ case "$device" in
     suite="staging"
     ARGS="$ARGS -t nonfree:true"
     # Encrypted / on PPP requires miniramfs
-    if [ ${installer} -eq 1 ]; then
+    if [ "${installer}" ]; then
         miniramfs=1
     fi
     ;;
