@@ -1,10 +1,10 @@
 prepare-artifacts-dir:
-  stage: prepare
+  stage: .pre
   script:
     - ssh builder@mobian.org mkdir -p ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
 
 cleanup-artifacts-dir:
-  stage: cleanup
+  stage: .post
   script:
     - ssh builder@mobian.org rm -rf ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
   when: always

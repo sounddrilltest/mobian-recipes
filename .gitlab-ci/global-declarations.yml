@@ -1,12 +1,10 @@
 image: registry.gitlab.com/mobian1/docker-images/mobian-image-ci-amd64:latest
 
 stages:
-  - prepare
   - rootfs
   - devicefs
   - image
   - installer
-  - cleanup
 
 default:
   before_script:
