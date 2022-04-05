@@ -45,6 +45,11 @@ actions:
     script: scripts/setup-zram-mounts.sh
 {{ end }}
 
+  - action: run
+    description: Rebuild initramfs
+    chroot: true
+    script: /usr/sbin/update-initramfs -u -k all
+
 {{ if eq $miniramfs "true" }}
   - action: run
     description: Create miniramfs

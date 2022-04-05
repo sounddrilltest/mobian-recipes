@@ -6,9 +6,6 @@ OFFSET=0
 ROOTPART=$(grep -vE '^#' /etc/fstab | grep -E '[[:space:]]/[[:space:]]' | awk '{ print $1; }')
 KERNEL_VERSION=$(linux-version list)
 
-# Update the initramfs to make sure it's up-to-date
-update-initramfs -u -k all
-
 case "${DEVICE}" in
     "oneplus6")
         DTB_VENDOR="oneplus"
