@@ -29,6 +29,7 @@ variables:
   MOBIAN_FILESYSTEM: "ext4"
   MOBIAN_IMAGE_SIZE: "6GB"
   MOBIAN_INCLUDE_NONFREE: "false"
+  MOBIAN_MINIRAMFS: "false"
   MOBIAN_PARTITION_TABLE: "mbr"
   ARTIFACTS_ROOT: /srv/builder/images
   DEVICEFS_UPLOAD: "false"

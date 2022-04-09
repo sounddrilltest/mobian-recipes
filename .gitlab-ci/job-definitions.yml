@@ -113,6 +113,7 @@ cleanup-artifacts-dir:
       -t partitiontable:${MOBIAN_PARTITION_TABLE}
       -t rootfs:${MOBIAN_ARTIFACTS}
       -t bootstart:${MOBIAN_BOOT_PARTITION_START}
+      -t miniramfs:${MOBIAN_MINIRAMFS}
       image.yaml
     - *finish-images
     - *sign-images
