@@ -7,6 +7,8 @@ stages:
   - installer
 
 default:
+  retry: 1
+  interruptible: true
   before_script:
     - chmod 0400 "$MOBIAN_SSH_KEY"
     - eval $(ssh-agent -s)

@@ -5,6 +5,7 @@ prepare-artifacts-dir:
     - ssh builder@mobian.org mkdir -p ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
 
 cleanup-artifacts-dir:
+  interruptible: false
   stage: .post
   tags: []
   script:
