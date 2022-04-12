@@ -60,6 +60,15 @@ do
   esac
 done
 
+case "$environment" in
+  "console" )
+    ARGS="$ARGS -t imagesize:2.5GB --scratchsize=5G "
+    ;;
+  *)
+    ARGS="$ARGS --scratchsize=8G "
+    ;;
+esac
+
 case "$device" in
   "pinephone" )
     arch="arm64"
@@ -158,7 +167,7 @@ fi
 ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t partitiontable:$partitiontable -t filesystem:$filesystem \
             -t environment:$environment -t image:$image_file -t rootfs:$rootfs_file \
-            -t debian_suite:$debian_suite -t suite:$suite --scratchsize=8G \
+            -t debian_suite:$debian_suite -t suite:$suite \
             -t installfs:$installfs_file"
 
 if [ ! "$image_only" -o ! -f "$rootfs_file" ]; then
