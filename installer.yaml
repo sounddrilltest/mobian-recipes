@@ -24,13 +24,8 @@ actions:
     variables:
       filesystem: {{ $filesystem }}
       image: {{ $image }}
-{{ if eq $environment "console" }}
-      imagesize: 5GB
-      rootstart: 2.5GiB
-{{ else }}
       imagesize: 8GB
       rootstart: 4GiB
-{{ end }}
       bootstart: {{ $bootstart }}
 
   - action: filesystem-deploy
