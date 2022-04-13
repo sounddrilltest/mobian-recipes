@@ -1,0 +1,30 @@
+{{- $architecture := or .architecture "arm64" -}}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: apt
+    recommends: false
+    description: Install Phosh packages
+    packages:
+      # Required packages
+      - gnome-session-bin
+      - gnome-settings-daemon
+      - libpam-gnome-keyring
+      - librsvg2-common
+      - mobian-tweaks-phosh
+      - phosh
+      - phosh-mobile-tweaks
+      - squeekboard
+      # Additional software we don't want metapackages to depend on
+      - epiphany-browser
+      - gnome-calculator
+      - gnome-console
+      - gnome-control-center
+      - gnome-usage
+      - portfolio-filemanager
+
+  - action: run
+    description: Disable getty in the Phosh environment
+    chroot: true
+    command: systemctl disable getty@.service
