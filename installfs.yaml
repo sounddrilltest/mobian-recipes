@@ -39,11 +39,6 @@ actions:
       - wget
 
   - action: run
-    description: Change plymouth default theme
-    chroot: true
-    command: plymouth-set-default-theme mobian
-
-  - action: run
     description: Set up system
     chroot: true
     script: scripts/setup-system.sh {{ $hostname }}

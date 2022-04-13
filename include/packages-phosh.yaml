@@ -30,11 +30,6 @@ actions:
       - webext-ublock-origin
 
   - action: run
-    description: Change plymouth default theme
-    chroot: true
-    command: plymouth-set-default-theme mobian
-
-  - action: run
     description: Disable getty in the Phosh environment
     chroot: true
     command: systemctl disable getty@.service

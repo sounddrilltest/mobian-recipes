@@ -13,9 +13,3 @@ actions:
       - mc
       # needed by osk-sdl
       - libdirectfb-1.7-7
-
-  - action: run
-    description: Change plymouth theme to show boot messages
-    chroot: true
-    command: plymouth-set-default-theme details
-
