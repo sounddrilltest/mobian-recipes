@@ -109,6 +109,11 @@ case "$device" in
     device="pc"
     ARGS="$ARGS -t imagesize:20GB"
     ;;
+  "stm32mp1" )
+    arch="armhf"
+    family="stm32"
+    partitiontable="stm32"
+    ;;
   * )
     echo "Unsupported device '$device'"
     exit 1

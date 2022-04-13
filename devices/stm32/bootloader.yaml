@@ -1,0 +1,9 @@
+{{- $architecture := or .architecture "armhf" -}}
+{{- $device := or .device "stm32mp1" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  # Nothing to be done, but we need an action anyway
+  - action: run
+    command: true

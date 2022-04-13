@@ -1,0 +1,39 @@
+{{- $architecture := or .architecture "armhf" -}}
+{{- $filesystem := or .filesystem "ext4" }}
+{{- $image := or .image "mobian-$device" -}}
+{{- $imagesize := or .imagesize "3.8GB" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: image-partition
+    imagename: {{ $image }}.img
+    imagesize: {{ $imagesize }}
+    partitiontype: gpt
+    mountpoints:
+      - mountpoint: /
+        partition: rootfs
+      - mountpoint: /boot
+        partition: boot
+    partitions:
+      - name: fsbl1
+        fs: fat32
+        start: 0
+        end: 1MiB
+      - name: fsbl2
+        fs: fat32
+        start: 1MiB
+        end: 2MiB
+      - name: ssbl
+        fs: fat32
+        start: 2MiB
+        end: 4MiB
+      - name: boot
+        fs: ext4
+        start: 4MiB
+        end: 512MiB
+        flags: [ boot ]
+      - name: rootfs
+        fs: {{ $filesystem }}
+        start: 512MiB
+        end: 100%
