@@ -11,5 +11,3 @@ actions:
       - vim
       - w3m
       - mc
-      # needed by osk-sdl
-      - libdirectfb-1.7-7
