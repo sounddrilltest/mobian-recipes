@@ -7,5 +7,5 @@ actions:
   - action: run
     description: Tweaks for console
     chroot: true
-    script: ../../scripts/setup-console.sh
+    script: setup-console.sh
 
