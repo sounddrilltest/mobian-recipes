@@ -4,8 +4,6 @@
 architecture: {{ $architecture }}
 
 actions:
+  # Nothing to be done, but we need an action anyway
   - action: run
-    description: Tweaks for console
-    chroot: true
-    script: setup-console.sh
-
+    command: true
