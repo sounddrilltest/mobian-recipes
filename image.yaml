@@ -5,7 +5,7 @@
 {{- $filesystem := or .filesystem "ext4" }}
 {{- $environment := or .environment "phosh" -}}
 {{- $image := or .image "mobian" -}}
-{{- $imagesize := or .imagesize "3.8GB" }}
+{{- $imagesize := or .imagesize "5GB" }}
 {{- $miniramfs := or .miniramfs "false" }}
 {{- $zram := or .zram "false" -}}
 {{- $bootstart := or .bootstart "0%" }}
