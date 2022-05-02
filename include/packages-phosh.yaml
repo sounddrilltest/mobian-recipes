@@ -7,7 +7,41 @@ actions:
     recommends: false
     description: Install Phosh packages
     packages:
-      - mobian-phosh
+# mobian-multimedia
+      - ffmpeg
+      - gstreamer1.0-gl
+      - gstreamer1.0-nice
+      - gstreamer1.0-pulseaudio
+      - rygel
+# mobian-phosh-base
+      - phosh-core
+      - feedbackd-device-themes
+      - at-spi2-core
+      - iio-sensor-proxy
+      - fonts-noto
+      - fonts-noto-cjk
+      - fonts-noto-color-emoji
+      - fonts-noto-mono
+      - fonts-noto-ui-core
+      - mesa-va-drivers
+      - mesa-vdpau-drivers
+      - wayland-protocols
+      - xdg-desktop-portal-gtk
+      - xdg-user-dirs
+      - libcanberra-gtk3-module
+      - gnome-initial-setup
+      - gnome-themes-extra-data
+      - network-manager-gnome
+      - phosh-tablet
+# mobian-phosh-extras
+      - fwupd
+      - gthd
+      - purple-xmpp-carbons
+      - purple-xmpp-http-upload
+      - qtwayland5
+# mobian-phosh
+      - phosh-full
+      - phosh-mobile-tweaks
       # Additional software we don't want metapackages to depend on
       - eog
       - epiphany-browser

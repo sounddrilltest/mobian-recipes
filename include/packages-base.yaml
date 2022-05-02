@@ -8,7 +8,66 @@ actions:
     recommends: false
     description: Install base packages
     packages:
-      - mobian-base
+      - alsa-ucm-conf
+      - alsa-utils
+      - apt-utils
+      - busybox
+      - ca-certificates
+      - chrony
+      - cloud-initramfs-growroot
+      - console-data
+      - console-setup
+      - device-tree-compiler
+      - dosfstools
+      - f2fs-tools
+      - file
+      - hwdata
+      - jitterentropy-rngd
+      - kbd
+      - locales
+      - locales-all
+      - man-db
+      - mmc-utils
+      - mobian-archive-keyring
+      - patch
+      - plymouth-theme-mobian
+      - python3-dbus
+      - rtkit
+      - usb-modeswitch
+      - usbutils
+      - u-boot-tools
+# System libraries
+      - libcanberra-pulse
+      - libnss-myhostname
+      - libnss-systemd
+      - libpam-cap
+# Console utilities
+      - bash-completion
+      - bzip2
+      - dialog
+      - gawk
+      - inxi
+      - less
+      - psmisc
+      - psutils
+      - sudo
+      - unzip
+      - vim
+      - xz-utils
+      - zstd
+# Bluetooth & network management
+      - bluetooth
+      - dnsmasq-base
+      - inetutils-ping
+      - iptables
+      - iw
+      - network-manager
+      - pulseaudio-module-bluetooth
+      - net-tools
+      - rfkill
+      - wireless-regdb
+      - wireless-tools
+      - wpasupplicant
 {{ if $ssh }}
       - openssh-server
 {{ end }}
