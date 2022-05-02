@@ -109,6 +109,14 @@ image-pocof1-phosh:
   needs:
     - rootfs-arm64-phosh-staging
 
+image-generic-arm64-phosh:
+  extends:
+    - .image
+    - .device-generic-arm64
+    - .shell-phosh
+  needs:
+    - rootfs-arm64-phosh-staging
+
 image-surfacepro3-phosh:
   extends:
     - .image

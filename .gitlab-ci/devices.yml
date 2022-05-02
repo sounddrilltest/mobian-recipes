@@ -48,6 +48,15 @@
     MOBIAN_SUITE: "staging"
     MOBIAN_INCLUDE_NONFREE: "true"
 
+.device-generic-arm64:
+  extends:
+    - .arch-arm64
+  variables:
+    MOBIAN_DEVICE_FAMILY: "arm64"
+    MOBIAN_DEVICE_NAME: "generic"
+    MOBIAN_INCLUDE_NONFREE: "true"
+    MOBIAN_SUITE: "staging"
+
 .device-surfacepro3:
   extends:
     - .arch-amd64
