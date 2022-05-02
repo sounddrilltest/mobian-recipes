@@ -96,6 +96,13 @@ case "$device" in
     partitiontable="gpt"
     ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
     ;;
+  # Generic per-architecture images
+  "arm64" )
+    arch="arm64"
+    family="arm64"
+    suite="staging"
+    ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
+    ;;
   "amd64" )
     arch="amd64"
     family="amd64"

@@ -1,0 +1,15 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $device := or .device "generic" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: apt
+    recommends: false
+    description: Install device-specific packages for Phosh
+    packages:
+      - mobile-broadband-provider-info
+      - phosh-phone
+      - firefox-esr-mobile-config
+      - powersupply
+      - megapixels

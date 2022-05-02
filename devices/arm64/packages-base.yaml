@@ -1,0 +1,22 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{- $device := or .device "generic" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: apt
+    recommends: false
+    description: Install device-specific base packages
+    packages:
+      - eg25-manager
+      - firmware-mobian-nonfree
+      - linux-image-5.17-arm64-mobian
+      - mobian-tweaks-data
+      - mobile-usb-networking
+      - rsync
+      - u-boot-menu
+# Temporary workaround until we have systemd-zram-generator
+      - zram-tools
+# DEBUG
+      - xterm
+      - openssh-server
