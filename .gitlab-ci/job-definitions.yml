@@ -1,34 +1,34 @@
 prepare-artifacts-dir:
   stage: .pre
-  tags: []
   script:
-    - ssh builder@mobian.org mkdir -p ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
+    - ssh gitlab-ci@mobian.org mkdir -p ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
 
 cleanup-artifacts-dir:
   interruptible: false
   stage: .post
-  tags: []
   script:
-    - ssh builder@mobian.org rm -rf ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
+    - ssh gitlab-ci@mobian.org rm -rf ${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
   when: always
 
 .save-artifacts: &save-artifacts |
-  scp ${MOBIAN_ARTIFACTS} builder@mobian.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
+  scp ${MOBIAN_ARTIFACTS} gitlab-ci@mobian.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}
 
 .restore-artifacts: &restore-artifacts |
   for artifact in ${MOBIAN_ARTIFACTS}; do
-    scp builder@mobian.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}/${artifact} .
+    scp gitlab-ci@mobian.org:${ARTIFACTS_ROOT}/${CI_PIPELINE_ID}/${artifact} .
   done
 
 .upload-images: &upload-images |
   if [ "${CI_PIPELINE_SOURCE}" = "schedule" ]; then
     IMAGES_DIR=${IMAGES_ROOT}/${MOBIAN_DEVICE_NAME}/${IMAGES_UPLOAD_SUBDIR}/weekly
+    SSH_USER=builder
   else
     IMAGES_DIR=${IMAGES_CI_ROOT}/$(date --date="${CI_PIPELINE_CREATED_AT}" +%Y%m%d.%H%M)
+    SSH_USER=gitlab-ci
   fi
-  ssh builder@mobian.org mkdir -p ${IMAGES_DIR}
+  ssh ${SSH_USER}@mobian.org mkdir -p ${IMAGES_DIR}
   for image in ${IMAGE_NAME}*; do
-    scp ${image} builder@mobian.org:${IMAGES_DIR}/
+    scp ${image} ${SSH_USER}@mobian.org:${IMAGES_DIR}/
   done
 
 .finish-images: &finish-images |

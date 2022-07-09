@@ -1,4 +1,4 @@
-image: registry.gitlab.com/mobian1/docker-images/mobian-image-ci-amd64:latest
+image: registry.salsa.debian.org/mobian-team/docker-images/mobian-image-ci-amd64:latest
 
 stages:
   - rootfs
@@ -10,9 +10,14 @@ default:
   retry: 1
   interruptible: true
   before_script:
-    - chmod 0400 "$MOBIAN_SSH_KEY"
+    - chmod 0400 "$MOBIAN_CI_SSH_KEY"
     - eval $(ssh-agent -s)
-    - ssh-add "$MOBIAN_SSH_KEY"
+    - ssh-add "$MOBIAN_CI_SSH_KEY"
+    - |
+      if [ -f "$MOBIAN_SSH_KEY" ]; then
+          chmod 0400 "$MOBIAN_SSH_KEY"
+          ssh-add "$MOBIAN_SSH_KEY"
+      fi
   tags:
     - kvm
 
@@ -20,7 +25,7 @@ workflow:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
       when: never
-    - if: $CI_PROJECT_ROOT_NAMESPACE == "mobian1"
+    - if: $CI_PROJECT_ROOT_NAMESPACE == "Mobian-team"
       when: always
     - when: never
 
