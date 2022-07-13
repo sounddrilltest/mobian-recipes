@@ -83,6 +83,8 @@ case "$device" in
   "librem5" )
     arch="arm64"
     family="librem5"
+    partitiontable="gpt"
+    esp="false"
     ARGS="$ARGS -t bootstart:8MiB"
     ;;
   "oneplus6"|"pocof1" )

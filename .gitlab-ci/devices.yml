@@ -29,7 +29,6 @@
     MOBIAN_DEVICE_FAMILY: "librem5"
     MOBIAN_DEVICE_NAME: "librem5"
     MOBIAN_BOOT_PARTITION_START: "8MiB"
-    MOBIAN_PARTITION_TABLE: "mbr"
 
 .device-oneplus6:
   extends:
