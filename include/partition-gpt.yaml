@@ -2,8 +2,9 @@
 {{- $filesystem := or .filesystem "ext4" }}
 {{- $image := or .image "mobian-$device" -}}
 {{- $imagesize := or .imagesize "3.8GB" }}
-{{- $bootstart := or .bootstart "0%" }}
+{{- $bootstart := or .bootstart "1MB" }}
 {{- $rootstart := or .rootstart "768MiB" }}
+{{- $has_esp_partition := or .has_esp_partition "false" }}
 
 architecture: {{ $architecture }}
 
@@ -19,27 +20,47 @@ actions:
 {{ else }}
         partition: rootfs
 {{ end }}
+        options: [ "x-systemd.growfs" ]
       - mountpoint: /boot
         partition: boot
+{{ if eq $has_esp_partition "true" }}
       - mountpoint: /boot/efi
         partition: esp
+{{ end }}
     partitions:
+{{ if eq $has_esp_partition "true" }}
       - name: esp
         fs: fat32
         start: {{ $bootstart }}
         end: 256MiB
         flags: [ esp, boot ]
+{{ end }}
       - name: boot
         fs: ext4
+{{ if eq $has_esp_partition "true" }}
         start: 256MiB
+{{ else }}
+        start: {{ $bootstart }}
+        flags: [ esp, boot ]
+{{ end }}
         end: 768MiB
       - name: rootfs
 {{ if ne $rootstart "768MiB" }}
         fs: {{ $filesystem }}
         start: 768MiB
         end: {{ $rootstart }}
+{{ if eq $architecture "amd64" }}
+        parttype: "4f68bce3-e8cd-4db1-96e7-fbcaf984b709"
+{{ else if eq $architecture "arm64" }}
+        parttype: "b921b045-1df0-41c3-af44-4c6f280d3fae"
+{{ end }}
       - name: installer
 {{ end }}
         fs: {{ $filesystem }}
         start: {{ $rootstart }}
         end: 100%
+{{ if eq $architecture "amd64" }}
+        parttype: "4f68bce3-e8cd-4db1-96e7-fbcaf984b709"
+{{ else if eq $architecture "arm64" }}
+        parttype: "b921b045-1df0-41c3-af44-4c6f280d3fae"
+{{ end }}

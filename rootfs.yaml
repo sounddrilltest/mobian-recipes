@@ -32,6 +32,11 @@ actions:
     source: overlays/apt/
     destination: /etc/apt/
 
+  - action: overlay
+    description: Enable resize of root partition
+    source: overlays/repart.d/
+    destination: /etc/repart.d/
+
   - action: run
     description: Setup Mobian repository
     chroot: true

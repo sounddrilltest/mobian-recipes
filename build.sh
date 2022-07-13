@@ -8,7 +8,7 @@ fi
 
 device="pinephone"
 image="image"
-partitiontable="mbr"
+partitiontable="gpt"
 filesystem="ext4"
 environment="phosh"
 hostname=
@@ -30,6 +30,7 @@ contrib=
 sign=
 miniramfs=
 verbose=
+esp="false"
 
 while getopts "dDvizobsZCrx:S:e:H:f:g:h:m:p:t:u:F:" opt
 do
@@ -95,11 +96,11 @@ case "$device" in
     family="amd64"
     partitiontable="gpt"
     ARGS="$ARGS -t imagesize:15GB"
+    esp="true"
     ;;
   "amd64-nonfree" )
     arch="amd64"
     family="amd64"
-    partitiontable="gpt"
     ARGS="$ARGS -t nonfree:true -t imagesize:15GB"
     ;;
   * )
@@ -151,7 +152,7 @@ fi
 ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t partitiontable:$partitiontable -t filesystem:$filesystem \
             -t image:$image_file -t rootfs:$rootfs_file -t installfs:$installfs_file \
-            -t debian_suite:$debian_suite -t suite:$suite --scratchsize=8G"
+            -t debian_suite:$debian_suite -t suite:$suite --scratchsize=8G -t has_esp_partition:$esp"
 
 if [ ! "$image_only" -o ! -f "$rootfs_file" ]; then
   $DEBOS_CMD $ARGS rootfs.yaml || exit 1

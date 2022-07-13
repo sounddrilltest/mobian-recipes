@@ -8,9 +8,10 @@
 {{- $imagesize := or .imagesize "5GB" }}
 {{- $miniramfs := or .miniramfs "false" }}
 {{- $zram := or .zram "false" -}}
-{{- $bootstart := or .bootstart "0%" }}
+{{- $bootstart := or .bootstart "1MB" }}
 {{- $nonfree := or .nonfree "false" -}}
 {{- $rootfs := or .rootfs "rootfs.tar.gz" }}
+{{- $has_esp_partition := or .has_esp_partition "false" }}
 
 architecture: {{ $architecture }}
 
@@ -32,6 +33,7 @@ actions:
       image: {{ $image }}
       imagesize: {{ $imagesize }}
       bootstart: {{ $bootstart }}
+      has_esp_partition: {{ $has_esp_partition }}
 
   - action: filesystem-deploy
     description: Deploy filesystem onto image

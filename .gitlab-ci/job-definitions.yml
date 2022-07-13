@@ -117,6 +117,7 @@ cleanup-artifacts-dir:
       -t rootfs:${MOBIAN_ARTIFACTS}
       -t bootstart:${MOBIAN_BOOT_PARTITION_START}
       -t miniramfs:${MOBIAN_MINIRAMFS}
+      -t has_esp_partition:${MOBIAN_HAS_ESP_PARTITION}
       image.yaml
     - *finish-images
     - *sign-images
@@ -141,6 +142,7 @@ cleanup-artifacts-dir:
       -t installfs:${INSTALLFS_NAME}
       -t partitiontable:${MOBIAN_PARTITION_TABLE}
       -t bootstart:${MOBIAN_BOOT_PARTITION_START}
+      -t has_esp_partition:${MOBIAN_HAS_ESP_PARTITION}
       installer.yaml
     - *finish-images
     - *sign-images

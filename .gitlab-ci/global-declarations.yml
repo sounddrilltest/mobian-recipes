@@ -37,7 +37,8 @@ variables:
   MOBIAN_IMAGE_SIZE: "6GB"
   MOBIAN_INCLUDE_NONFREE: "false"
   MOBIAN_MINIRAMFS: "false"
-  MOBIAN_PARTITION_TABLE: "mbr"
+  MOBIAN_PARTITION_TABLE: "gpt"
+  MOBIAN_HAS_ESP_PARTITION: "false"
   ARTIFACTS_ROOT: /srv/builder/images
   DEVICEFS_UPLOAD: "false"
   IMAGES_ROOT: /var/www/images
