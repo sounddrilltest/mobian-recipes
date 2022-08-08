@@ -117,18 +117,10 @@ image-surfacepro3-phosh:
   needs:
     - rootfs-amd64-phosh
 
-image-amd64-uefi-phosh:
+image-amd64-phosh:
   extends:
     - .image
-    - .device-amd64-uefi
-    - .shell-phosh
-  needs:
-    - rootfs-amd64-phosh
-
-image-amd64-pc-phosh:
-  extends:
-    - .image
-    - .device-amd64-pc
+    - .device-amd64
     - .shell-phosh
   needs:
     - rootfs-amd64-phosh
