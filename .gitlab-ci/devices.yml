@@ -65,3 +65,13 @@
     MOBIAN_DEVICE_NAME: "amd64"
     MOBIAN_IMAGE_SIZE: "20GB"
     MOBIAN_PARTITION_TABLE: "gpt"
+
+.device-amd64-nonfree:
+  extends:
+    - .arch-amd64
+  variables:
+    MOBIAN_DEVICE_FAMILY: "amd64"
+    MOBIAN_DEVICE_NAME: "amd64-nonfree"
+    MOBIAN_IMAGE_SIZE: "20GB"
+    MOBIAN_INCLUDE_NONFREE: "true"
+    MOBIAN_PARTITION_TABLE: "gpt"

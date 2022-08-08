@@ -125,6 +125,14 @@ image-amd64-phosh:
   needs:
     - rootfs-amd64-phosh
 
+image-amd64-nonfree-phosh:
+  extends:
+    - .image
+    - .device-amd64-nonfree
+    - .shell-phosh
+  needs:
+    - rootfs-amd64-phosh
+
 installer-pinephone-phosh:
   extends:
     - .installer

@@ -102,6 +102,12 @@ case "$device" in
     partitiontable="gpt"
     ARGS="$ARGS -t imagesize:20GB"
     ;;
+  "amd64-nonfree" )
+    arch="amd64"
+    family="amd64"
+    partitiontable="gpt"
+    ARGS="$ARGS -t nonfree:true -t imagesize:20GB"
+    ;;
   * )
     echo "Unsupported device '$device'"
     exit 1

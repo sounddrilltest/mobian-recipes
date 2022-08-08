@@ -47,6 +47,7 @@ actions:
     recipe: devices/{{ $family }}/packages-base.yaml
     variables:
       device: {{ $device }}
+      nonfree: {{ $nonfree }}
 
   - action: recipe
     recipe: devices/{{ $family }}/packages-{{ $environment }}.yaml
