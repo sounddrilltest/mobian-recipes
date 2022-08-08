@@ -53,7 +53,7 @@ cleanup-artifacts-dir:
   stage: rootfs
   script:
     - MOBIAN_ARTIFACTS="rootfs-${ARCH}-${MOBIAN_GRAPHICAL_SHELL}-${MOBIAN_SUITE}.tar.gz"
-    - debos --scratchsize=8G
+    - debos --cpus=1 --scratchsize=8G
       -t architecture:${ARCH}
       -t environment:${MOBIAN_GRAPHICAL_SHELL}
       -t nonfree:${MOBIAN_INCLUDE_NONFREE}
@@ -67,7 +67,7 @@ cleanup-artifacts-dir:
   stage: rootfs
   script:
     - MOBIAN_ARTIFACTS="installfs-${ARCH}-${MOBIAN_SUITE}.tar.gz"
-    - debos --scratchsize=8G
+    - debos --cpus=1 --scratchsize=8G
       -t architecture:${ARCH}
       -t suite:${MOBIAN_SUITE}
       -t installfs:${MOBIAN_ARTIFACTS}
@@ -79,7 +79,7 @@ cleanup-artifacts-dir:
   script:
     - MOBIAN_ARTIFACTS="rootfs-${ARCH}-${MOBIAN_GRAPHICAL_SHELL}-${MOBIAN_SUITE}.tar.gz"
     - *restore-artifacts
-    - debos --scratchsize=8G
+    - debos --cpus=1 --scratchsize=8G
       -t architecture:${ARCH}
       -t environment:${MOBIAN_GRAPHICAL_SHELL}
       -t device:${MOBIAN_DEVICE_NAME}
@@ -104,7 +104,7 @@ cleanup-artifacts-dir:
     - MOBIAN_ARTIFACTS="rootfs-${ARCH}-${MOBIAN_GRAPHICAL_SHELL}-${MOBIAN_SUITE}.tar.gz"
     - *restore-artifacts
     - IMAGE_NAME=mobian-${MOBIAN_DEVICE_NAME}-${MOBIAN_GRAPHICAL_SHELL}-$(date --date="${CI_PIPELINE_CREATED_AT}" +%Y%m%d)
-    - debos --scratchsize=8G
+    - debos --cpus=1 --scratchsize=8G
       -t architecture:${ARCH}
       -t environment:${MOBIAN_GRAPHICAL_SHELL}
       -t device:${MOBIAN_DEVICE_NAME}
@@ -130,7 +130,7 @@ cleanup-artifacts-dir:
     - *restore-artifacts
     - IMAGE_NAME=mobian-installer-${MOBIAN_DEVICE_NAME}-${MOBIAN_GRAPHICAL_SHELL}-$(date --date="${CI_PIPELINE_CREATED_AT}" +%Y%m%d)
     - zcat "rootfs-${MOBIAN_DEVICE_NAME}-${MOBIAN_GRAPHICAL_SHELL}.tar.gz" | tar2sqfs "rootfs-${MOBIAN_DEVICE_NAME}-${MOBIAN_GRAPHICAL_SHELL}.sqfs" > /dev/null 2>&1
-    - debos --scratchsize=8G
+    - debos --cpus=1 --scratchsize=8G
       -t architecture:${ARCH}
       -t environment:${MOBIAN_GRAPHICAL_SHELL}
       -t device:${MOBIAN_DEVICE_NAME}
