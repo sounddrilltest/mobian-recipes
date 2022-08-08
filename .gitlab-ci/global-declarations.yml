@@ -46,6 +46,9 @@ variables:
 .arch-amd64:
   variables:
     ARCH: amd64
+    MOBIAN_DEVICE_FAMILY: "amd64"
+    MOBIAN_IMAGE_SIZE: "15GB"
+    MOBIAN_PARTITION_TABLE: "gpt"
 
 .arch-arm64:
   variables:

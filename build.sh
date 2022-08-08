@@ -90,23 +90,17 @@ case "$device" in
     suite="staging"
     ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
     ;;
-  "surfacepro3" )
-    arch="amd64"
-    family="amd64"
-    partitiontable="gpt"
-    ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
-    ;;
   "amd64" )
     arch="amd64"
     family="amd64"
     partitiontable="gpt"
-    ARGS="$ARGS -t imagesize:20GB"
+    ARGS="$ARGS -t imagesize:15GB"
     ;;
   "amd64-nonfree" )
     arch="amd64"
     family="amd64"
     partitiontable="gpt"
-    ARGS="$ARGS -t nonfree:true -t imagesize:20GB"
+    ARGS="$ARGS -t nonfree:true -t imagesize:15GB"
     ;;
   * )
     echo "Unsupported device '$device'"

@@ -9,12 +9,8 @@ actions:
     recommends: false
     description: Install device-specific base packages
     packages:
-{{ if eq $device "amd64" "amd64-nonfree" }}
       - linux-image-amd64
       - grub-efi
-{{ else }}
-      - {{ $device }}-support
-{{ end }}
 {{ if eq $nonfree "true" }}
       - atmel-firmware
       - bluez-firmware

@@ -4,7 +4,11 @@
 architecture: {{ $architecture }}
 
 actions:
+  - action: overlay
+    description: GRUB configuration file
+    source: overlays/bootloader
+
   - action: run
     description: Install and configure GRUB
     chroot: true
-    script: bootloader.sh {{ $device }}
+    script: bootloader.sh
