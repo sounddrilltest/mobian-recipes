@@ -26,7 +26,7 @@ actions:
       - gnome-weather
       - lollypop
       - portfolio-filemanager
-      - webext-ublock-origin
+      - webext-ublock-origin-firefox
 
   - action: run
     description: Disable getty in the Phosh environment
