@@ -11,6 +11,7 @@ actions:
       # Additional software we don't want metapackages to depend on
       - eog
       - epiphany-browser
+      - endeavour
       - evince
       - firefox-esr
       - gnome-calculator
@@ -21,7 +22,6 @@ actions:
       - gnome-software-plugin-flatpak
       - gnome-sound-recorder
       - gnome-text-editor
-      - gnome-todo
       - gnome-usage
       - gnome-weather
       - lollypop
