@@ -60,4 +60,3 @@
   variables:
     MOBIAN_DEVICE_NAME: "amd64-nonfree"
     MOBIAN_INCLUDE_NONFREE: "true"
-    MOBIAN_HAS_ESP_PARTITION: "true"

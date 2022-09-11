@@ -83,26 +83,24 @@ case "$device" in
   "librem5" )
     arch="arm64"
     family="librem5"
-    partitiontable="gpt"
-    esp="false"
     ARGS="$ARGS -t bootstart:8MiB"
     ;;
   "oneplus6"|"pocof1" )
     arch="arm64"
     family="sdm845"
     suite="staging"
-    ARGS="$ARGS -t nonfree:true -t imagesize:5GB"
+    ARGS="$ARGS -t nonfree:true"
     ;;
   "amd64" )
     arch="amd64"
     family="amd64"
-    partitiontable="gpt"
-    ARGS="$ARGS -t imagesize:15GB"
     esp="true"
+    ARGS="$ARGS -t imagesize:15GB"
     ;;
   "amd64-nonfree" )
     arch="amd64"
     family="amd64"
+    esp="true"
     ARGS="$ARGS -t nonfree:true -t imagesize:15GB"
     ;;
   * )
@@ -154,7 +152,8 @@ fi
 ARGS="$ARGS -t architecture:$arch -t family:$family -t device:$device \
             -t partitiontable:$partitiontable -t filesystem:$filesystem \
             -t image:$image_file -t rootfs:$rootfs_file -t installfs:$installfs_file \
-            -t debian_suite:$debian_suite -t suite:$suite --scratchsize=8G -t has_esp_partition:$esp"
+            -t debian_suite:$debian_suite -t suite:$suite -t has_esp_partition:$esp \
+            --scratchsize=8G"
 
 if [ ! "$image_only" -o ! -f "$rootfs_file" ]; then
   $DEBOS_CMD $ARGS rootfs.yaml || exit 1
