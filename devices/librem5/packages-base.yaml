@@ -9,5 +9,6 @@ actions:
     description: Install device-specific base packages
     packages:
       - {{ $device }}-support
-      - rsync
       - gdisk
+      - rsync
+      - wget
