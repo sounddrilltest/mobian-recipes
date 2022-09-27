@@ -25,8 +25,12 @@ actions:
       - gnome-usage
       - gnome-weather
       - lollypop
+      - phosh-mobile-settings
+      - phosh-plugins
       - portfolio-filemanager
       - webext-ublock-origin-firefox
+      # Temporary workaround until chatty returns to bookworm
+      - chatty
 
   - action: run
     description: Disable getty in the Phosh environment
