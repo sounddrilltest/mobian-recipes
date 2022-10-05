@@ -79,6 +79,7 @@ actions:
     variables:
       device: {{ $device }}
       image: {{ $image }}
+      bootstart: {{ $bootstart }}
       miniramfs: {{ $miniramfs }}
 
   - action: run
