@@ -10,3 +10,8 @@ plymouth-set-default-theme mobian
 if [ -f /usr/bin/phosh ]; then
     systemctl enable phosh.service
 fi
+
+# systemd-firstboot requires user input, which isn't possible
+# on mobile devices
+systemctl disable systemd-firstboot.service
+systemctl mask systemd-firstboot.service
