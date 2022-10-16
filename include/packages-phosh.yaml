@@ -28,6 +28,7 @@ actions:
       - phosh-mobile-settings
       - phosh-plugins
       - portfolio-filemanager
+      - powersupply-gtk
       - webext-ublock-origin-firefox
       # Temporary workaround until chatty returns to bookworm
       - chatty

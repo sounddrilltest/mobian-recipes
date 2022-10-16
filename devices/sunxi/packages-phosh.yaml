@@ -14,4 +14,3 @@ actions:
 {{ end }}
       - imagemagick
       - megapixels
-      - powersupply

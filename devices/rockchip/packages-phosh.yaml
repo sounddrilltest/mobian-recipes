@@ -10,4 +10,3 @@ actions:
     packages:
       - mobian-phosh-phone
       - firefox-esr-mobile-config
-      - powersupply
