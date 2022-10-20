@@ -27,6 +27,7 @@ actions:
       - lollypop
       - phosh-mobile-settings
       - phosh-plugins
+      - phosh-tour
       - portfolio-filemanager
       - powersupply-gtk
       - webext-ublock-origin-firefox
