@@ -78,12 +78,6 @@ sudo dd if=<image> of=/dev/<sdcard> bs=1M
 
 **CAUTION: This will format the SD card and erase all its contents!!!**
 
-## Third-party software
-
-The project's Wiki provides
-[a list](https://gitlab.com/mobian1/wiki/-/wikis/Software) of software
-packages modified or created to work on mobile devices.
-
 ## Contributing
 
 If you want to help with this project, please have a look at the
