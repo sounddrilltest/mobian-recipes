@@ -25,6 +25,7 @@ actions:
       - gnome-usage
       - gnome-weather
       - lollypop
+      - phog
       - phosh-mobile-settings
       - phosh-plugins
       - phosh-tour
