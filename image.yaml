@@ -3,7 +3,7 @@
 {{- $device := or .device "pinephone" }}
 {{- $partitiontable := or .partitiontable "mbr" }}
 {{- $filesystem := or .filesystem "ext4" }}
-{{- $environment := or .environment "phosh" -}}
+{{- $environment := or .environment "graphical" -}}
 {{- $image := or .image "mobian" -}}
 {{- $imagesize := or .imagesize "5GB" }}
 {{- $miniramfs := or .miniramfs "false" }}

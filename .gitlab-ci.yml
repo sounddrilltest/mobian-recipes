@@ -3,25 +3,25 @@ include:
   - .gitlab-ci/global-declarations.yml
   - .gitlab-ci/devices.yml
 
-rootfs-amd64-phosh:
+rootfs-amd64-graphical:
   extends:
     - .rootfs-generic
     - .arch-amd64
-    - .shell-phosh
+    - .environment-graphical
 
-rootfs-arm64-phosh:
+rootfs-arm64-graphical:
   extends:
     - .rootfs-generic
     - .arch-arm64
-    - .shell-phosh
+    - .environment-graphical
 
-rootfs-arm64-phosh-staging:
+rootfs-arm64-graphical-staging:
   variables:
     MOBIAN_SUITE: "staging"
   extends:
     - .rootfs-generic
     - .arch-arm64
-    - .shell-phosh
+    - .environment-graphical
 
 installfs-arm64:
   extends:
@@ -35,119 +35,119 @@ installfs-arm64-staging:
     - .rootfs-installer
     - .arch-arm64
 
-devicefs-pinephone-phosh:
+devicefs-pinephone-graphical:
   extends:
     - .devicefs
     - .device-pinephone
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-arm64-phosh
+    - rootfs-arm64-graphical
 
-devicefs-pinephonepro-phosh:
+devicefs-pinephonepro-graphical:
   variables:
     MOBIAN_MINIRAMFS: "true"
   extends:
     - .devicefs
     - .device-pinephonepro
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-graphical-staging
 
-#devicefs-pinetab-phosh:
+#devicefs-pinetab-graphical:
 #  extends:
 #    - .devicefs
 #    - .device-pinetab
-#    - .shell-phosh
+#    - .environment-graphical
 #  needs:
-#    - rootfs-arm64-phosh
+#    - rootfs-arm64-graphical
 
-image-pinephone-phosh:
+image-pinephone-graphical:
   extends:
     - .image
     - .device-pinephone
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-arm64-phosh
+    - rootfs-arm64-graphical
 
-image-pinephonepro-phosh:
+image-pinephonepro-graphical:
   extends:
     - .image
     - .device-pinephonepro
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-graphical-staging
 
-#image-pinetab-phosh:
+#image-pinetab-graphical:
 #  extends:
 #    - .image
 #    - .device-pinetab
-#    - .shell-phosh
+#    - .environment-graphical
 #  needs:
-#    - rootfs-arm64-phosh
+#    - rootfs-arm64-graphical
 
-image-librem5-phosh:
+image-librem5-graphical:
   extends:
     - .image
     - .device-librem5
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-arm64-phosh
+    - rootfs-arm64-graphical
 
-image-oneplus6-phosh:
+image-oneplus6-graphical:
   extends:
     - .image
     - .device-oneplus6
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-graphical-staging
 
-image-pocof1-phosh:
+image-pocof1-graphical:
   extends:
     - .image
     - .device-pocof1
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-graphical-staging
 
-image-amd64-phosh:
+image-amd64-graphical:
   extends:
     - .image
     - .device-amd64
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-amd64-phosh
+    - rootfs-amd64-graphical
 
-image-amd64-nonfree-phosh:
+image-amd64-nonfree-graphical:
   extends:
     - .image
     - .device-amd64-nonfree
-    - .shell-phosh
+    - .environment-graphical
   needs:
-    - rootfs-amd64-phosh
+    - rootfs-amd64-graphical
 
-installer-pinephone-phosh:
+installer-pinephone-graphical:
   extends:
     - .installer
     - .device-pinephone
-    - .shell-phosh
+    - .environment-graphical
   needs:
     - installfs-arm64
-    - devicefs-pinephone-phosh
+    - devicefs-pinephone-graphical
 
-installer-pinephonepro-phosh:
+installer-pinephonepro-graphical:
   extends:
     - .installer
     - .device-pinephonepro
-    - .shell-phosh
+    - .environment-graphical
   needs:
     - installfs-arm64-staging
-    - devicefs-pinephonepro-phosh
+    - devicefs-pinephonepro-graphical
 
-#installer-pinetab-phosh:
+#installer-pinetab-graphical:
 #  extends:
 #    - .installer
 #    - .device-pinetab
-#    - .shell-phosh
+#    - .environment-graphical
 #  needs:
 #    - installfs-arm64
-#    - devicefs-pinetab-phosh
+#    - devicefs-pinetab-graphical

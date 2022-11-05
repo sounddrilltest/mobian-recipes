@@ -6,7 +6,7 @@ architecture: {{ $architecture }}
 actions:
   - action: apt
     recommends: false
-    description: Install device-specific packages for Phosh
+    description: Install device-specific packages for graphical environments
     packages:
       - firefox-esr-mobile-config
       - mobian-phosh-phone

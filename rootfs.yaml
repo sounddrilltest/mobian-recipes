@@ -2,7 +2,7 @@
 {{- $username := or .username "mobian" -}}
 {{- $password := or .password "1234" -}}
 {{- $hostname := or .hostname "mobian" -}}
-{{- $environment := or .environment "phosh" -}}
+{{- $environment := or .environment "graphical" -}}
 {{- $contrib := or .contrib "false" -}}
 {{- $nonfree := or .nonfree "false" -}}
 {{- $ssh := or .ssh "" -}}

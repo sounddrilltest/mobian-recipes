@@ -55,6 +55,6 @@ variables:
   variables:
     ARCH: arm64
 
-.shell-phosh:
+.environment-graphical:
   variables:
-    MOBIAN_GRAPHICAL_SHELL: "phosh"
+    MOBIAN_ENVIRONMENT: "graphical"

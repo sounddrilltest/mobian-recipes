@@ -4,7 +4,7 @@
 {{- $device := or .device "pinephone" }}
 {{- $partitiontable := or .partitiontable "mbr" }}
 {{- $filesystem := or .filesystem "ext4" }}
-{{- $environment := or .environment "phosh" -}}
+{{- $environment := or .environment "graphical" -}}
 {{- $image := or .image "mobian-installer.img" -}}
 {{- $installfs := or .installfs "installfs.tar.gz" }}
 {{- $bootstart := or .bootstart "8MiB" }}

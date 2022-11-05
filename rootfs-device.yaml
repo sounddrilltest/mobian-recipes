@@ -2,7 +2,7 @@
 {{- $family := or .family "sunxi" }}
 {{- $nonfree := or .nonfree "false" -}}
 {{- $device := or .device "pinephone" }}
-{{- $environment := or .environment "phosh" -}}
+{{- $environment := or .environment "graphical" -}}
 {{- $rootfs := or .rootfs "rootfs.tar.gz" }}
 {{- $miniramfs := or .miniramfs "false" }}
 
