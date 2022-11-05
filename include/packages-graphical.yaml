@@ -8,6 +8,7 @@ actions:
     description: Install graphical environments
     packages:
       - mobian-phosh
+      - sxmo-utils
       # Additional software we don't want metapackages to depend on
       - eog
       - epiphany-browser
