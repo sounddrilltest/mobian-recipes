@@ -21,7 +21,6 @@ actions:
       - firmware-brcm80211
       - firmware-cavium
       - firmware-intel-sound
-      - firmware-intelwimax
       - firmware-iwlwifi
       - firmware-linux
       - firmware-libertas
