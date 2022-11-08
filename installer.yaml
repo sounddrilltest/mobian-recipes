@@ -26,7 +26,7 @@ actions:
       filesystem: {{ $filesystem }}
       image: {{ $image }}
       imagesize: 8GB
-      rootstart: 4GiB
+      rootstart: 4.5GiB
       bootstart: {{ $bootstart }}
       has_esp_partition: {{ $has_esp_partition }}
 
