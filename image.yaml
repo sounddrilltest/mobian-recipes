@@ -74,6 +74,11 @@ actions:
     command: cp ${ROOTDIR}/boot/miniramfs ${ARTIFACTDIR}/{{ $image }}.miniramfs
 {{ end }}
 
+  - action: run
+    description: Cleanup filesystem
+    chroot: true
+    script: scripts/rootfs-cleanup.sh
+
   - action: recipe
     recipe: devices/{{ $family }}/bootloader.yaml
     variables:
@@ -81,8 +86,3 @@ actions:
       image: {{ $image }}
       bootstart: {{ $bootstart }}
       miniramfs: {{ $miniramfs }}
-
-  - action: run
-    description: Cleanup filesystem
-    chroot: true
-    script: scripts/rootfs-cleanup.sh
