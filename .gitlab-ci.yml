@@ -15,22 +15,7 @@ rootfs-arm64-phosh:
     - .arch-arm64
     - .shell-phosh
 
-rootfs-arm64-phosh-staging:
-  variables:
-    MOBIAN_SUITE: "staging"
-  extends:
-    - .rootfs-generic
-    - .arch-arm64
-    - .shell-phosh
-
 installfs-arm64:
-  extends:
-    - .rootfs-installer
-    - .arch-arm64
-
-installfs-arm64-staging:
-  variables:
-    MOBIAN_SUITE: "staging"
   extends:
     - .rootfs-installer
     - .arch-arm64
@@ -51,7 +36,7 @@ devicefs-pinephonepro-phosh:
     - .device-pinephonepro
     - .shell-phosh
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-phosh
 
 #devicefs-pinetab-phosh:
 #  extends:
@@ -75,7 +60,7 @@ image-pinephonepro-phosh:
     - .device-pinephonepro
     - .shell-phosh
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-phosh
 
 #image-pinetab-phosh:
 #  extends:
@@ -99,7 +84,7 @@ image-oneplus6-phosh:
     - .device-oneplus6
     - .shell-phosh
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-phosh
 
 image-pocof1-phosh:
   extends:
@@ -107,7 +92,7 @@ image-pocof1-phosh:
     - .device-pocof1
     - .shell-phosh
   needs:
-    - rootfs-arm64-phosh-staging
+    - rootfs-arm64-phosh
 
 image-amd64-phosh:
   extends:
@@ -140,7 +125,7 @@ installer-pinephonepro-phosh:
     - .device-pinephonepro
     - .shell-phosh
   needs:
-    - installfs-arm64-staging
+    - installfs-arm64
     - devicefs-pinephonepro-phosh
 
 #installer-pinetab-phosh:
