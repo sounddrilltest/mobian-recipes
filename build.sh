@@ -69,7 +69,6 @@ case "$device" in
   "pinephonepro" )
     arch="arm64"
     family="rockchip"
-    suite="staging"
     ARGS="$ARGS -t nonfree:true"
     # Encrypted / on PPP requires miniramfs
     if [ "${installer}" ]; then
@@ -88,7 +87,6 @@ case "$device" in
   "oneplus6"|"pocof1" )
     arch="arm64"
     family="sdm845"
-    suite="staging"
     ARGS="$ARGS -t nonfree:true"
     ;;
   "amd64" )
