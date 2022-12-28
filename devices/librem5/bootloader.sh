@@ -9,6 +9,9 @@ https://arm01.puri.sm/job/u-boot_builds/job/uboot_librem5_mainline_build/lastSuc
 KERNEL_VERSION=`linux-version list`
 /etc/kernel/postinst.d/zz-sync-dtb $KERNEL_VERSION
 
+# Re-generate extlinux.conf to ensure we have a valid one
+/usr/sbin/u-boot-update
+
 TARGET_DISK=$(lsblk -n -o kname,pkname,mountpoint | grep ' /$' | awk '{ print $2 }')
 
 # We use parted for adding a "protective" partition for u-boot:

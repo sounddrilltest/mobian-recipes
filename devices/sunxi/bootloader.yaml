@@ -4,6 +4,7 @@
 architecture: {{ $architecture }}
 
 actions:
-  # Nothing to be done, but we need an action anyway
   - action: run
-    command: true
+    description: Ensure we have a valid extlinux.conf
+    chroot: true
+    command: /usr/sbin/u-boot-update
