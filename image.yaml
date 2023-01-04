@@ -8,7 +8,7 @@
 {{- $imagesize := or .imagesize "5GB" }}
 {{- $miniramfs := or .miniramfs "false" }}
 {{- $zram := or .zram "false" -}}
-{{- $bootstart := or .bootstart "1MB" }}
+{{- $bootstart := or .bootstart "1MiB" }}
 {{- $nonfree := or .nonfree "false" -}}
 {{- $rootfs := or .rootfs "rootfs.tar.gz" }}
 {{- $has_esp_partition := or .has_esp_partition "false" }}

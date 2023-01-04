@@ -19,8 +19,10 @@ actions:
 {{ else }}
         partition: rootfs
 {{ end }}
+        options: [ "x-systemd.growfs" ]
       - mountpoint: /boot
         partition: boot
+        options: [ "x-systemd.growfs" ]
     partitions:
       - name: boot
         fs: ext4

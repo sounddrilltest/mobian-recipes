@@ -2,7 +2,7 @@
 {{- $filesystem := or .filesystem "ext4" }}
 {{- $image := or .image "mobian-$device" -}}
 {{- $imagesize := or .imagesize "3.8GB" }}
-{{- $bootstart := or .bootstart "1MB" }}
+{{- $bootstart := or .bootstart "1MiB" }}
 {{- $rootstart := or .rootstart "768MiB" }}
 {{- $has_esp_partition := or .has_esp_partition "false" }}
 
@@ -23,6 +23,7 @@ actions:
         options: [ "x-systemd.growfs" ]
       - mountpoint: /boot
         partition: boot
+        options: [ "x-systemd.growfs" ]
 {{ if eq $has_esp_partition "true" }}
       - mountpoint: /boot/efi
         partition: esp

@@ -1,6 +1,6 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $device := or .device "librem5" }}
-{{- $bootstart := or .bootstart "1MB" }}
+{{- $bootstart := or .bootstart "1MiB" }}
 
 architecture: {{ $architecture }}
 
