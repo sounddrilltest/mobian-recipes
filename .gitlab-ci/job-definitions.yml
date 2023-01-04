@@ -36,9 +36,9 @@ cleanup-artifacts-dir:
     bmaptool create "${IMAGE_NAME}.img" > "${IMAGE_NAME}.img.bmap"
     gzip --force ${IMAGE_NAME}.img
     sha256sum ${IMAGE_NAME}.img.gz ${IMAGE_NAME}.img.bmap > ${IMAGE_NAME}.sha256sums
-  elif [ -f ${IMAGE_NAME}.root.img ]; then
-    tar czf ${IMAGE_NAME}.tar.gz ${IMAGE_NAME}.boot-*.img ${IMAGE_NAME}.root.img
-    rm ${IMAGE_NAME}.boot-*.img ${IMAGE_NAME}.root.img
+  elif [ -f ${IMAGE_NAME}.rootfs.img ]; then
+    tar czf ${IMAGE_NAME}.tar.gz ${IMAGE_NAME}.*.img
+    rm ${IMAGE_NAME}.*.img
     sha256sum ${IMAGE_NAME}.tar.gz > ${IMAGE_NAME}.sha256sums
   fi
 
