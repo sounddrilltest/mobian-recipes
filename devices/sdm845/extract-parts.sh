@@ -9,7 +9,7 @@ IMAGE="$1"
 # On an Android device, we can't simply flash a full bootable image: we can only
 # flash one partition at a time using fastboot.
 
-BLKDEVS=$(/usr/sbin/parted -ms "${IMAGE}.img" unit s print | sed '/BYT;/d')
+BLKDEVS=$(parted -ms "${IMAGE}.img" unit s print | sed '/BYT;/d')
 BLKSIZE=$(echo "${BLKDEVS}" | head -1 | cut -d ':' -f 4)
 for label in boot rootfs; do
     PARTSTART=$(echo "${BLKDEVS}" | grep "${label}" | cut -d ':' -f 2 | sed 's/s$//')
