@@ -1,7 +1,7 @@
 #!/bin/sh
 
-DEVICE=$1
-IMAGE=$2
+DEVICE="$1"
+IMAGE="$2"
 
 [ "$IMAGE" ] || exit 1
 
@@ -23,5 +23,5 @@ sed -i '/\/boot/d' ${ROOTDIR}/etc/fstab
 
 for variant in ${VARIANTS}; do
     echo "Extracting boot image for variant ${variant}"
-    mv ${ROOTDIR}/bootimg-${variant} ${ARTIFACTDIR}/${IMAGE}.boot-${variant}.img
+    mv "${ROOTDIR}/bootimg-${variant}" "${ARTIFACTDIR}/${IMAGE}.boot-${variant}.img"
 done
