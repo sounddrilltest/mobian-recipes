@@ -16,6 +16,6 @@ actions:
     script: extract-bootimg.sh {{ $device }} {{ $image }}
 
   - action: run
-    description: Extract rootfs partition
+    description: Extract partitions
     postprocess: true
-    script: extract-rootfs.sh {{ $device }} {{ $image }}
+    script: extract-parts.sh {{ $image }}

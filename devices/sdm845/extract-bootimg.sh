@@ -12,14 +12,17 @@ case "${DEVICE}" in
     "pocof1")
         VARIANTS="beryllium-tianma beryllium-ebbg"
         ;;
+    "mix2s")
+        VARIANTS="polaris"
+        ;;
+    "sdm845")
+        VARIANTS="enchilada fajita beryllium-tianma beryllium-ebbg polaris"
+        ;;
     *)
         echo "ERROR: unsupported device ${DEVICE}"
         exit 1
         ;;
 esac
-
-# SDM845 devices don't have a /boot partition
-sed -i '/\/boot/d' ${ROOTDIR}/etc/fstab
 
 for variant in ${VARIANTS}; do
     echo "Extracting boot image for variant ${variant}"
