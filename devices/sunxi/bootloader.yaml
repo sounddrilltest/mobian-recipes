@@ -7,4 +7,4 @@ actions:
   - action: run
     description: Ensure we have a valid extlinux.conf
     chroot: true
-    command: /usr/sbin/u-boot-update
+    command: /etc/kernel/postinst.d/zz-u-boot-menu "$(linux-version list | tail -1)"

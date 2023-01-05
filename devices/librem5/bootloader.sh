@@ -10,7 +10,7 @@ KERNEL_VERSION=$(linux-version list)
 /etc/kernel/postinst.d/zz-sync-dtb "${KERNEL_VERSION}"
 
 # Re-generate extlinux.conf to ensure we have a valid one
-/usr/sbin/u-boot-update
+/etc/kernel/postinst.d/zz-u-boot-menu "${KERNEL_VERSION}"
 
 TARGET_DISK=$(lsblk -n -o kname,pkname,mountpoint | grep ' /$' | awk '{ print $2 }')
 
