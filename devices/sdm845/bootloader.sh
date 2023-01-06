@@ -34,12 +34,12 @@ KERNEL_VERSION=$(linux-version list)
 
 case "${DEVICE}" in
     "oneplus6")
-        generate_bootimg "${ROOTPART}" "sdm845" "oneplus" "enchilada"
-        generate_bootimg "${ROOTPART}" "sdm845" "oneplus" "fajita"
+        generate_bootimg "${ROOTPART}" "qcom/sdm845" "oneplus" "enchilada"
+        generate_bootimg "${ROOTPART}" "qcom/sdm845" "oneplus" "fajita"
         ;;
     "pocof1")
-        generate_bootimg "${ROOTPART}" "sdm845" "xiaomi" "beryllium" "tianma"
-        generate_bootimg "${ROOTPART}" "sdm845" "xiaomi" "beryllium" "ebbg"
+        generate_bootimg "${ROOTPART}" "qcom/sdm845" "xiaomi" "beryllium" "tianma"
+        generate_bootimg "${ROOTPART}" "qcom/sdm845" "xiaomi" "beryllium" "ebbg"
         ;;
     *)
         echo "ERROR: unsupported device ${DEVICE}"
