@@ -5,10 +5,8 @@
 apt -y autoremove --purge
 apt clean
 
-# Remove SSH keys and machine ID so they get generated on first boot
-rm -f /etc/ssh/ssh_host_* \
-      /var/lib/dbus/machine-id
-
+# Remove machine ID so it gets generated on first boot
+rm -f /var/lib/dbus/machine-id
 truncate -s0 /etc/machine-id
 
 # FIXME: these are automatically installed on first boot, and block
