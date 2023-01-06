@@ -20,7 +20,7 @@ generate_bootimg() {
     # Append DTB to kernel
     echo "Creating boot image for ${FULLMODEL}..."
     cat /boot/vmlinuz-${KERNEL_VERSION} \
-        /usr/lib/linux-image-${KERNEL_VERSION}/qcom/${SOC}-${VENDOR}-${FULLMODEL}.dtb > /tmp/kernel-dtb
+        /usr/lib/linux-image-${KERNEL_VERSION}/${SOC}-${VENDOR}-${FULLMODEL}.dtb > /tmp/kernel-dtb
 
     # Create the bootimg as it's the only format recognized by the Android bootloader
     abootimg --create /bootimg-${FULLMODEL} -c kerneladdr=0x8000 \
