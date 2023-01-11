@@ -4,6 +4,11 @@
 architecture: {{ $architecture }}
 
 actions:
+  - action: run
+    chroot: true
+    description: Drop systemd-repart configuration
+    command: rm -rf /etc/repart.d/
+
   - action: apt
     recommends: false
     description: Install device-specific base packages
