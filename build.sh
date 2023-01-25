@@ -154,9 +154,9 @@ ARGS="${ARGS} -t architecture:${arch} -t family:${family} -t device:${device} \
             --scratchsize=8G"
 
 if [ ! "${image_only}" ] || [ ! -f "${rootfs_file}" ]; then
-  ${DEBOS_CMD} ${ARGS} rootfs.yaml || exit 1
   # Ensure subsequent artifacts are rebuilt too
   rm -f "rootfs-${device}-${environment}.tar.gz"
+  ${DEBOS_CMD} ${ARGS} rootfs.yaml || exit 1
 fi
 
 if [ "$installer" ]; then
