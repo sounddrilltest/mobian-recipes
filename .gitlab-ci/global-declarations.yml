@@ -43,6 +43,8 @@ variables:
   DEVICEFS_UPLOAD: "false"
   IMAGES_ROOT: /var/www/images
   IMAGES_CI_ROOT: /var/www/ci-images
+  MOBIAN_IMAGES_HOST: images.mobian.org
+  MOBIAN_CACHE_HOST: amd64-ssd.runner.mobian.org
 
 .arch-amd64:
   variables:
