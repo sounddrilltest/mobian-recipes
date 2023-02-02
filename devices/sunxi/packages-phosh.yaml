@@ -10,7 +10,7 @@ actions:
     packages:
 {{ if eq $device "pinephone" }}
       - mobian-phosh-phone
-      - firefox-esr-mobile-config
+      # - firefox-esr-mobile-config
 {{ end }}
       - imagemagick
       - megapixels

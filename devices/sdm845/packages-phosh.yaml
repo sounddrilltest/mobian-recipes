@@ -8,5 +8,5 @@ actions:
     recommends: false
     description: Install device-specific packages for Phosh
     packages:
-      - firefox-esr-mobile-config
+      # - firefox-esr-mobile-config
       - mobian-phosh-phone
