@@ -84,9 +84,8 @@ case "${device}" in
     family="librem5"
     ARGS="${ARGS} -t bootstart:8MiB"
     ;;
-  "oneplus6"|"pocof1" )
-    arch="arm64"
-    family="sdm845"
+  "sdm845" )
+    family="qcom"
     ARGS="${ARGS} -t nonfree:true"
     ;;
   "amd64" )

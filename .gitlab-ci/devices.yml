@@ -29,21 +29,18 @@
     MOBIAN_DEVICE_NAME: "librem5"
     MOBIAN_BOOT_PARTITION_START: "8MiB"
 
-.device-oneplus6:
+.device-qcom:
   extends:
     - .arch-arm64
   variables:
-    MOBIAN_DEVICE_FAMILY: "sdm845"
-    MOBIAN_DEVICE_NAME: "oneplus6"
+    MOBIAN_DEVICE_FAMILY: "qcom"
     MOBIAN_INCLUDE_NONFREE: "true"
 
-.device-pocof1:
+.device-sdm845:
   extends:
-    - .arch-arm64
+    - .device-qcom
   variables:
-    MOBIAN_DEVICE_FAMILY: "sdm845"
-    MOBIAN_DEVICE_NAME: "pocof1"
-    MOBIAN_INCLUDE_NONFREE: "true"
+    MOBIAN_DEVICE_NAME: "sdm845"
 
 .device-amd64:
   extends:

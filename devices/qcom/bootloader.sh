@@ -33,13 +33,13 @@ ROOTPART=$(findmnt -n -o UUID /)
 KERNEL_VERSION=$(linux-version list)
 
 case "${DEVICE}" in
-    "oneplus6")
+    "sdm845")
         generate_bootimg "${ROOTPART}" "qcom/sdm845" "oneplus" "enchilada"
         generate_bootimg "${ROOTPART}" "qcom/sdm845" "oneplus" "fajita"
-        ;;
-    "pocof1")
+        generate_bootimg "${ROOTPART}" "qcom/sdm845" "shift" "axolotl"
         generate_bootimg "${ROOTPART}" "qcom/sdm845" "xiaomi" "beryllium" "tianma"
         generate_bootimg "${ROOTPART}" "qcom/sdm845" "xiaomi" "beryllium" "ebbg"
+        generate_bootimg "${ROOTPART}" "qcom/sdm845" "xiaomi" "polaris"
         ;;
     *)
         echo "ERROR: unsupported device ${DEVICE}"

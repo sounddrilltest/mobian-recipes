@@ -78,18 +78,10 @@ image-librem5-phosh:
   needs:
     - rootfs-arm64-phosh
 
-image-oneplus6-phosh:
+image-sdm845-phosh:
   extends:
     - .image
-    - .device-oneplus6
-    - .shell-phosh
-  needs:
-    - rootfs-arm64-phosh
-
-image-pocof1-phosh:
-  extends:
-    - .image
-    - .device-pocof1
+    - .device-sdm845
     - .shell-phosh
   needs:
     - rootfs-arm64-phosh
