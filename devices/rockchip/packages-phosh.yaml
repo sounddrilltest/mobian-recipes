@@ -9,4 +9,4 @@ actions:
     description: Install device-specific packages for Phosh
     packages:
       - mobian-phosh-phone
-      # - firefox-esr-mobile-config
+      - firefox-esr-mobile-config

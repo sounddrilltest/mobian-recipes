@@ -13,7 +13,7 @@ actions:
       - epiphany-browser
       - endeavour
       - evince
-      # - firefox-esr
+      - firefox-esr
       - geary
       - gnome-calculator
       - gnome-calendar
