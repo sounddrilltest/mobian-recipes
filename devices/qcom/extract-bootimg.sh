@@ -9,6 +9,9 @@ case "${DEVICE}" in
     "sdm845")
         VARIANTS="axolotl beryllium-tianma beryllium-ebbg enchilada fajita polaris"
         ;;
+    "sm7225")
+        VARIANTS="fp4"
+        ;;
     *)
         echo "ERROR: unsupported device ${DEVICE}"
         exit 1

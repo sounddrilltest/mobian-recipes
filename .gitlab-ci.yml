@@ -86,6 +86,14 @@ image-sdm845-phosh:
   needs:
     - rootfs-arm64-phosh
 
+image-sm7225-phosh:
+  extends:
+    - .image
+    - .device-sm7225
+    - .shell-phosh
+  needs:
+    - rootfs-arm64-phosh
+
 image-amd64-phosh:
   extends:
     - .image

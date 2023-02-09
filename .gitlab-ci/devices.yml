@@ -42,6 +42,12 @@
   variables:
     MOBIAN_DEVICE_NAME: "sdm845"
 
+.device-sm7225:
+  extends:
+    - .device-qcom
+  variables:
+    MOBIAN_DEVICE_NAME: "sm7225"
+
 .device-amd64:
   extends:
     - .arch-amd64

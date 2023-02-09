@@ -84,7 +84,7 @@ case "${device}" in
     family="librem5"
     ARGS="${ARGS} -t bootstart:8MiB"
     ;;
-  "sdm845" )
+  "sdm845"|"sm7225" )
     family="qcom"
     ARGS="${ARGS} -t nonfree:true"
     ;;
