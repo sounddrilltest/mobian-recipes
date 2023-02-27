@@ -9,7 +9,7 @@ https://source.puri.sm/a-wai/uboot-imx/-/jobs/405334/artifacts/raw/debian/output
 KERNEL_VERSION=$(linux-version list)
 /etc/kernel/postinst.d/zz-u-boot-menu "${KERNEL_VERSION}"
 
-TARGET_DISK=$(lsblk -n -o kname,pkname,mountpoint | grep ' /$' | awk '{ print $2 }')
+TARGET_DISK=$(lsblk -n -o kname,pkname,mountpoint | grep ' /boot$' | awk '{ print $2 }')
 
 # We use parted for adding a "protective" partition for u-boot:
 # * mkpart u-boot 66s ${BOOTSTART}: create "u-boot" partition from sector 66

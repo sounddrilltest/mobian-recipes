@@ -11,6 +11,7 @@ image="image"
 partitiontable="gpt"
 filesystem="ext4"
 environment="phosh"
+crypt_root=
 hostname=
 arch="arm64"
 do_compress=
@@ -32,9 +33,10 @@ miniramfs=
 verbose=
 esp="false"
 
-while getopts "dDvizobsZCrx:S:e:H:f:g:h:m:p:t:u:F:" opt
+while getopts "cdDvizobsZCrx:S:e:H:f:g:h:m:p:t:u:F:" opt
 do
   case "${opt}" in
+    c ) crypt_root=1 ;;
     d ) use_docker=1 ;;
     D ) debug=1 ;;
     v ) verbose=1 ;;
@@ -145,6 +147,7 @@ fi
 [ "${miniramfs}" ] && ARGS="${ARGS} -t miniramfs:true"
 [ "${contrib}" ] && ARGS="${ARGS} -t contrib:true"
 [ "${zram}" ] && ARGS="${ARGS} -t zram:true"
+[ "${crypt_root}" ] && ARGS="${ARGS} -t crypt_root:true"
 
 ARGS="${ARGS} -t architecture:${arch} -t family:${family} -t device:${device} \
             -t partitiontable:${partitiontable} -t filesystem:${filesystem} \

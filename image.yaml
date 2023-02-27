@@ -12,6 +12,8 @@
 {{- $nonfree := or .nonfree "false" -}}
 {{- $rootfs := or .rootfs "rootfs.tar.gz" }}
 {{- $has_esp_partition := or .has_esp_partition "false" }}
+{{- $crypt_root := or .crypt_root "false" }}
+{{- $password := or .password "1234" -}}
 
 architecture: {{ $architecture }}
 
@@ -37,6 +39,17 @@ actions:
 
   - action: filesystem-deploy
     description: Deploy filesystem onto image
+{{ if eq $crypt_root "true" }}
+    setup-fstab: false
+
+  - action: recipe
+    recipe: include/packages-fde.yaml
+
+  - action: run
+    description: Encrypt root filesystem
+    label: setup-luks
+    script: scripts/setup-luks.sh {{ $password }}
+{{ end }}
 
 {{ if eq $filesystem "f2fs" }}
   - action: apt
@@ -80,6 +93,13 @@ actions:
     description: Export miniramfs
     chroot: false
     command: cp ${ROOTDIR}/boot/miniramfs ${ARTIFACTDIR}/{{ $image }}.miniramfs
+{{ end }}
+
+{{ if eq $crypt_root "true" }}
+  - action: run
+    description: Force initramfs update
+    chroot: true
+    script: scripts/update-initramfs.sh
 {{ end }}
 
   - action: run
