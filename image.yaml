@@ -38,6 +38,14 @@ actions:
   - action: filesystem-deploy
     description: Deploy filesystem onto image
 
+{{ if eq $filesystem "f2fs" }}
+  - action: apt
+    recommends: false
+    description: Install F2FS tools
+    packages:
+      - f2fs-tools
+{{ end }}
+
 {{ if eq $zram "true" }}
   - action: run
     description: setup zram (fstab)
