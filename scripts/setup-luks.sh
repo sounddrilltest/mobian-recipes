@@ -2,19 +2,30 @@
 
 set -e
 
-PASSPHRASE="${1}"
-FILESYSTEM="$(blkid -s TYPE -o value /dev/vda2)"
+PASSWORD="${1}"
+lsblk -n -o kname,pkname,mountpoint
+if [ -e /dev/vda1 ]; then
+    TARGET_DISK=/dev/vda
+else 
+    TARGET_DISK=$(lsblk -n -o kname,pkname,mountpoint | grep loop | grep '/boot$' | awk '{ print $1 }')
+fi
+PART=""
+if echo ${TARGET_DISK} | grep -q p1; then
+    PART="p"
+    TARGET_DISK="/dev/$(echo ${TARGET_DISK} | sed 's:p1::')"
+fi
+FILESYSTEM="$(blkid -s TYPE -o value ${TARGET_DISK}${PART}2)"
 
 umount -lf $ROOTDIR/boot $ROOTDIR
 
 if [ "${FILESYSTEM}" = 'ext4' ]
 then
     echo "Minimize ext4 extent for rootfs filesystem to make room for cryptsetup"
-    resize2fs -fM /dev/vda2
+    resize2fs -fM ${TARGET_DISK}${PART}2
 fi
 
 echo "Setup encryption"
-echo "${PASSPHRASE}" | cryptsetup reencrypt /dev/vda2 root --new --reduce-device-size 32M --type luks2 --cipher aes-xts-essiv:sha256 --pbkdf argon2id --key-size 512 --hash sha512
+echo "${PASSWORD}" | cryptsetup reencrypt ${TARGET_DISK}${PART}2 root --new --reduce-device-size 32M --type luks2 --cipher aes-xts-essiv:sha256 --pbkdf argon2id --key-size 512 --hash sha512
 
 echo "Resize filesystem to fill up partition"
 if [ "${FILESYSTEM}" = 'ext4' ]
@@ -23,14 +34,17 @@ then
 elif [ "${FILESYSTEM}" = 'f2fs' ]
 then
     resize.f2fs -s /dev/mapper/root
+elif [ "${FILESYSTEM}" = 'btrfs' ]
+then
+    btrfs filesystem resize max /dev/mapper/root
 fi
 
 # remount partitions
 mount /dev/mapper/root $ROOTDIR
-mount /dev/vda1 $ROOTDIR/boot
+mount ${TARGET_DISK}${PART}1 $ROOTDIR/boot
 
 # get root partition UUID
-rootfs=$(blkid -s UUID -o value /dev/vda2)
+rootfs=$(blkid -s UUID -o value ${TARGET_DISK}${PART}2)
 
 echo "Create fstab"
 cat > $ROOTDIR/etc/fstab << EOF
