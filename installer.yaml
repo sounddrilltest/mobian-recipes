@@ -22,11 +22,11 @@ actions:
   - action: recipe
     recipe: include/partition-{{ $partitiontable }}.yaml
     variables:
+      bootstart: {{ $bootstart }}
       filesystem: {{ $filesystem }}
       image: {{ $image }}
       imagesize: 8GB
-      rootstart: 4.5GiB
-      bootstart: {{ $bootstart }}
+      installer: "true"
 
   - action: filesystem-deploy
     description: Deploy filesystem onto image

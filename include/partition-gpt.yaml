@@ -3,12 +3,25 @@
 {{- $image := or .image "mobian-$device" -}}
 {{- $imagesize := or .imagesize "3.8GB" }}
 {{- $bootstart := or .bootstart "1MiB" }}
-{{- $rootstart := or .rootstart "768MiB" }}
+{{- $installer := or .installer "false" }}
 
-{{- $bootend := "768MiB" }}
+{{- $espend := $bootstart }}
 {{- $has_esp_partition := "false" }}
+{{- $rootstart := "512MiB" }}
+
 {{- if eq $architecture "amd64" }}
 {{-   $has_esp_partition = "true" }}
+{{- end }}
+
+{{- if eq $has_esp_partition "true" }}
+{{-   $espend = "256MiB" }}
+{{-   $rootstart = "768MiB" }}
+{{- end }}
+
+{{- $bootend := $rootstart }}
+
+{{- if eq $installer "true" }}
+{{-   $rootstart = "4.5GiB" }}
 {{- end }}
 
 architecture: {{ $architecture }}
@@ -20,7 +33,7 @@ actions:
     partitiontype: gpt
     mountpoints:
       - mountpoint: /
-{{ if ne $rootstart "768MiB" }}
+{{ if eq $installer "true" }}
         partition: installer
 {{ else }}
         partition: rootfs
@@ -38,20 +51,16 @@ actions:
       - name: esp
         fs: fat32
         start: {{ $bootstart }}
-        end: 256MiB
+        end: {{ $espend }}
         flags: [ esp, boot ]
 {{ end }}
       - name: boot
         fs: ext4
-{{ if eq $has_esp_partition "true" }}
-        start: 256MiB
-{{ else }}
-        start: {{ $bootstart }}
-        flags: [ esp, boot ]
-{{ end }}
+        start: {{ $espend }}
         end: {{ $bootend }}
+        flags: [ boot ]
       - name: rootfs
-{{ if ne $rootstart "768MiB" }}
+{{ if eq $installer "true" }}
         fs: {{ $filesystem }}
         start: {{ $bootend }}
         end: {{ $rootstart }}

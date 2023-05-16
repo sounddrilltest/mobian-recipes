@@ -31,10 +31,11 @@ actions:
   - action: recipe
     recipe: include/partition-{{ $partitiontable }}.yaml
     variables:
+      bootstart: {{ $bootstart }}
       filesystem: {{ $filesystem }}
       image: {{ $image }}
       imagesize: {{ $imagesize }}
-      bootstart: {{ $bootstart }}
+      installer: "false"
 
   - action: filesystem-deploy
     description: Deploy filesystem onto image
