@@ -1,11 +1,11 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $family := or .family "sunxi" }}
 {{- $device := or .device "pinephone" }}
-{{- $partitiontable := or .partitiontable "mbr" }}
+{{- $partitiontable := or .partitiontable "gpt" }}
 {{- $filesystem := or .filesystem "ext4" }}
 {{- $environment := or .environment "phosh" -}}
 {{- $image := or .image "mobian" -}}
-{{- $imagesize := or .imagesize "5GB" }}
+{{- $imagesize := or .imagesize "6GB" }}
 {{- $miniramfs := or .miniramfs "false" }}
 {{- $zram := or .zram "false" -}}
 {{- $bootstart := or .bootstart "1MiB" }}

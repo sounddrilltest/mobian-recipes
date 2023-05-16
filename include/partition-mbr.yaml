@@ -1,8 +1,8 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{- $filesystem := or .filesystem "ext4" }}
 {{- $image := or .image "mobian-$device" -}}
-{{- $imagesize := or .imagesize "3.8GB" }}
-{{- $bootstart := or .bootstart "0%" }}
+{{- $imagesize := or .imagesize "6GB" }}
+{{- $bootstart := or .bootstart "1MiB" }}
 {{- $installer := or .installer "false" }}
 
 {{- $rootstart := "512MiB" }}
@@ -25,8 +25,8 @@ actions:
         partition: installer
 {{ else }}
         partition: rootfs
-{{ end }}
         options: [ "x-systemd.growfs" ]
+{{ end }}
       - mountpoint: /boot
         partition: boot
         options: [ "x-systemd.growfs" ]

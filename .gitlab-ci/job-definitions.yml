@@ -139,6 +139,7 @@ cleanup-artifacts-dir:
       -t image:${IMAGE_NAME}
       -t nonfree:${MOBIAN_INCLUDE_NONFREE}
       -t partitiontable:${MOBIAN_PARTITION_TABLE}
+      -t installersize:${MOBIAN_INSTALLER_SIZE}
       -t installfs:${INSTALLFS_NAME}
       -t bootstart:${MOBIAN_BOOT_PARTITION_START}
       installer.yaml

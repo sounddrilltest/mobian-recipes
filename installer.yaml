@@ -2,12 +2,13 @@
 {{- $family := or .family "sunxi" }}
 {{- $nonfree := or .nonfree "false" -}}
 {{- $device := or .device "pinephone" }}
-{{- $partitiontable := or .partitiontable "mbr" }}
+{{- $partitiontable := or .partitiontable "gpt" }}
 {{- $filesystem := or .filesystem "ext4" }}
 {{- $environment := or .environment "phosh" -}}
 {{- $image := or .image "mobian-installer.img" -}}
+{{- $installersize := or .installersize "8GB" }}
 {{- $installfs := or .installfs "installfs.tar.gz" }}
-{{- $bootstart := or .bootstart "8MiB" }}
+{{- $bootstart := or .bootstart "1MiB" }}
 
 architecture: {{ $architecture }}
 
@@ -25,7 +26,7 @@ actions:
       bootstart: {{ $bootstart }}
       filesystem: {{ $filesystem }}
       image: {{ $image }}
-      imagesize: 8GB
+      imagesize: {{ $installersize }}
       installer: "true"
 
   - action: filesystem-deploy

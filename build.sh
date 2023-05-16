@@ -94,12 +94,12 @@ case "${device}" in
   "amd64" )
     arch="amd64"
     family="amd64"
-    ARGS="${ARGS} -t imagesize:15GB"
+    ARGS="${ARGS} -t imagesize:15GB -t installersize:10GB"
     ;;
   "amd64-nonfree" )
     arch="amd64"
     family="amd64"
-    ARGS="${ARGS} -t nonfree:true -t imagesize:15GB"
+    ARGS="${ARGS} -t nonfree:true -t imagesize:15GB -t installersize:10GB"
     ;;
   * )
     echo "Unsupported device '${device}'"
