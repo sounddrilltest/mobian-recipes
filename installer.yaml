@@ -8,7 +8,6 @@
 {{- $image := or .image "mobian-installer.img" -}}
 {{- $installfs := or .installfs "installfs.tar.gz" }}
 {{- $bootstart := or .bootstart "8MiB" }}
-{{- $has_esp_partition := or .has_esp_partition "false" }}
 
 architecture: {{ $architecture }}
 
@@ -28,7 +27,6 @@ actions:
       imagesize: 8GB
       rootstart: 4.5GiB
       bootstart: {{ $bootstart }}
-      has_esp_partition: {{ $has_esp_partition }}
 
   - action: filesystem-deploy
     description: Deploy filesystem onto image

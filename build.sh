@@ -32,7 +32,6 @@ contrib=
 sign=
 miniramfs=
 verbose=
-esp="false"
 
 while getopts "cdDvizobsZCrR:x:S:e:H:f:g:h:m:p:t:u:F:" opt
 do
@@ -95,13 +94,11 @@ case "${device}" in
   "amd64" )
     arch="amd64"
     family="amd64"
-    esp="true"
     ARGS="${ARGS} -t imagesize:15GB"
     ;;
   "amd64-nonfree" )
     arch="amd64"
     family="amd64"
-    esp="true"
     ARGS="${ARGS} -t nonfree:true -t imagesize:15GB"
     ;;
   * )
@@ -156,7 +153,7 @@ fi
 ARGS="${ARGS} -t architecture:${arch} -t family:${family} -t device:${device} \
             -t partitiontable:${partitiontable} -t filesystem:${filesystem} \
             -t image:${image_file} -t rootfs:${rootfs_file} -t installfs:${installfs_file} \
-            -t debian_suite:${debian_suite} -t suite:${suite} -t has_esp_partition:${esp} \
+            -t debian_suite:${debian_suite} -t suite:${suite} \
             --scratchsize=8G"
 
 if [ ! "${image_only}" ] || [ ! -f "${rootfs_file}" ]; then

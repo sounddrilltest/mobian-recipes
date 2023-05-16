@@ -4,7 +4,12 @@
 {{- $imagesize := or .imagesize "3.8GB" }}
 {{- $bootstart := or .bootstart "1MiB" }}
 {{- $rootstart := or .rootstart "768MiB" }}
-{{- $has_esp_partition := or .has_esp_partition "false" }}
+
+{{- $bootend := "768MiB" }}
+{{- $has_esp_partition := "false" }}
+{{- if eq $architecture "amd64" }}
+{{-   $has_esp_partition = "true" }}
+{{- end }}
 
 architecture: {{ $architecture }}
 
@@ -44,11 +49,11 @@ actions:
         start: {{ $bootstart }}
         flags: [ esp, boot ]
 {{ end }}
-        end: 768MiB
+        end: {{ $bootend }}
       - name: rootfs
 {{ if ne $rootstart "768MiB" }}
         fs: {{ $filesystem }}
-        start: 768MiB
+        start: {{ $bootend }}
         end: {{ $rootstart }}
 {{ if eq $architecture "amd64" }}
         parttype: "4f68bce3-e8cd-4db1-96e7-fbcaf984b709"
