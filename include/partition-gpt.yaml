@@ -7,10 +7,18 @@
 
 {{- $espend := $bootstart }}
 {{- $has_esp_partition := "false" }}
+{{- $parttype := "invalid" }}
 {{- $rootstart := "512MiB" }}
 
 {{- if eq $architecture "amd64" }}
 {{-   $has_esp_partition = "true" }}
+{{-   $parttype = "4f68bce3-e8cd-4db1-96e7-fbcaf984b709" }}
+{{- else if eq $architecture "arm64" }}
+{{-   $parttype = "b921b045-1df0-41c3-af44-4c6f280d3fae" }}
+{{- else if eq $architecture "armhf" }}
+{{-   $parttype = "69dad710-2ce4-4e3c-b16c-21a1d49abed3" }}
+{{- else if eq $architecture "riscv64" }}
+{{-   $parttype = "72ec70a6-cf74-40e6-bd49-4bda08e8f224" }}
 {{- end }}
 
 {{- if eq $has_esp_partition "true" }}
@@ -64,26 +72,10 @@ actions:
         fs: {{ $filesystem }}
         start: {{ $bootend }}
         end: {{ $rootstart }}
-{{ if eq $architecture "amd64" }}
-        parttype: "4f68bce3-e8cd-4db1-96e7-fbcaf984b709"
-{{ else if eq $architecture "arm64" }}
-        parttype: "b921b045-1df0-41c3-af44-4c6f280d3fae"
-{{ else if eq $architecture "armhf" }}
-        parttype: "69dad710-2ce4-4e3c-b16c-21a1d49abed3"
-{{ else if eq $architecture "riscv64" }}
-        parttype: "72ec70a6-cf74-40e6-bd49-4bda08e8f224"
-{{ end }}
+        parttype: {{ $parttype }}
       - name: installer
 {{ end }}
         fs: {{ $filesystem }}
         start: {{ $rootstart }}
         end: 100%
-{{ if eq $architecture "amd64" }}
-        parttype: "4f68bce3-e8cd-4db1-96e7-fbcaf984b709"
-{{ else if eq $architecture "arm64" }}
-        parttype: "b921b045-1df0-41c3-af44-4c6f280d3fae"
-{{ else if eq $architecture "armhf" }}
-        parttype: "69dad710-2ce4-4e3c-b16c-21a1d49abed3"
-{{ else if eq $architecture "riscv64" }}
-        parttype: "72ec70a6-cf74-40e6-bd49-4bda08e8f224"
-{{ end }}
+        parttype: {{ $parttype }}
