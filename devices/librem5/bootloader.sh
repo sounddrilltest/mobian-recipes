@@ -3,7 +3,7 @@
 BOOTSTART="$1"
 
 wget -O /u-boot-librem5.imx \
-https://source.puri.sm/a-wai/uboot-imx/-/jobs/405334/artifacts/raw/debian/output/u-boot.imx
+https://source.puri.sm/a-wai/uboot-imx/-/jobs/422198/artifacts/raw/debian/output/u-boot.imx
 
 # Re-generate extlinux.conf to ensure we have a valid one
 KERNEL_VERSION=$(linux-version list)
