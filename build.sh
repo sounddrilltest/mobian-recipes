@@ -71,6 +71,7 @@ done
 case "${device}" in
   "pinephone" )
     family="sunxi"
+    ARGS="${ARGS} -t nonfree:true"
     ;;
   "pinephonepro" )
     family="rockchip"
@@ -82,6 +83,7 @@ case "${device}" in
     ;;
   "pinetab" )
     family="sunxi"
+    ARGS="${ARGS} -t nonfree:true"
     ;;
   "librem5" )
     family="librem5"
