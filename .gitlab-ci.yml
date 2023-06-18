@@ -70,6 +70,14 @@ image-pinephonepro-phosh:
 #  needs:
 #    - rootfs-arm64-phosh
 
+image-pinetab2-phosh:
+  extends:
+    - .image
+    - .device-pinetab2
+    - .shell-phosh
+  needs:
+    - rootfs-arm64-phosh
+
 image-librem5-phosh:
   extends:
     - .image
