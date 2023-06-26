@@ -34,12 +34,12 @@ cleanup-artifacts-dir:
 .finish-images: &finish-images |
   if [ -f "${IMAGE_NAME}.img" ]; then
     bmaptool create "${IMAGE_NAME}.img" > "${IMAGE_NAME}.img.bmap"
-    gzip --force ${IMAGE_NAME}.img
-    sha256sum ${IMAGE_NAME}.img.gz ${IMAGE_NAME}.img.bmap > ${IMAGE_NAME}.sha256sums
+    xz --compress --force ${IMAGE_NAME}.img
+    sha256sum ${IMAGE_NAME}.img.xz ${IMAGE_NAME}.img.bmap > ${IMAGE_NAME}.sha256sums
   elif [ -f ${IMAGE_NAME}.rootfs.img ]; then
-    tar czf ${IMAGE_NAME}.tar.gz ${IMAGE_NAME}.*.img
+    tar cJf ${IMAGE_NAME}.tar.xz ${IMAGE_NAME}.*.img
     rm ${IMAGE_NAME}.*.img
-    sha256sum ${IMAGE_NAME}.tar.gz > ${IMAGE_NAME}.sha256sums
+    sha256sum ${IMAGE_NAME}.tar.xz > ${IMAGE_NAME}.sha256sums
   fi
 
 .sign-images: &sign-images |

@@ -190,14 +190,14 @@ fi
 
 if [ "$do_compress" ]; then
   echo "Compressing ${image_file}..."
-  [ -f "${image_file}.img" ] && gzip --keep --force "${image_file}.img"
-  [ -f "${image_file}.rootfs.img" ] && tar czf "${image_file}.tar.gz" "${image_file}".*.img
+  [ -f "${image_file}.img" ] && xz --compress --keep --force "${image_file}.img"
+  [ -f "${image_file}.rootfs.img" ] && tar cJf "${image_file}.tar.xz" "${image_file}".*.img
 fi
 
 if [ -n "$sign" ]; then
     truncate -s0 "${image_file}.sha256sums"
     if [ "$do_compress" ]; then
-        extensions="img.gz tar.gz img.bmap"
+        extensions="img.xz tar.xz img.bmap"
     else
         extensions="*.img"
     fi
